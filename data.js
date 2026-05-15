@@ -76,6 +76,11 @@ const lecturesIndex = {
         title: "المحاضرة السادسة: قائمة الدخل الشامل والقوائم المالية",
         file: "lectures/comp_lec5.js",
       },
+    
+    com_sources: {
+        title: "📚 المصادر والمراجع (PDF)",
+        file: "lectures/com.sources.js",
+      },
     },
   },
   // Statistics
