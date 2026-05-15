@@ -277,14 +277,4 @@ const lectureData = {
         },
       ],
     },
-  },
-
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // الامتحان السابق - إدارة الموارد البشرية (Man413) - 2025
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-
-// Export for module usage
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = lectureData;
-}
+  };

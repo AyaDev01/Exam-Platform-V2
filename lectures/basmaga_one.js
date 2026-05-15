@@ -1,6 +1,7 @@
 // basmaga.js
 const lectureData = {
      title: "اسئلة محلولة للبصمجة صح وغلط",
+    isSolvedDocument: true,
     exam: {
         trueFalse: [
 // أسئلة صواب أو خطأ فقط (محلولة مع سبب كل خطأ بلون مميز)

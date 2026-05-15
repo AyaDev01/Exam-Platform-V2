@@ -1,895 +1,1446 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QEEGSE63WE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <head>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QEEGSE63WE"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  gtag('config', 'G-QEEGSE63WE');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      gtag("config", "G-QEEGSE63WE");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>منصة الامتحانات</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #fff;
-            line-height: 1.6;
-            min-height: 100vh;
+      body {
+        font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        color: #fff;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        text-align: center;
+        padding: 30px 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        margin-bottom: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      header h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+      header p {
+        color: #aaa;
+      }
+
+      .subjects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .subject-card {
+        background: rgba(15, 118, 113, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 15px;
+        padding: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .subject-card:hover {
+        background: rgba(7, 150, 138, 0.306);
+        transform: translateY(-3px);
+        border-color: #07637a;
+      }
+
+      .subject-card .icon {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+      }
+      .subject-card h3 {
+        font-size: 1.2em;
+      }
+
+      .lecture-list {
+        display: none;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .lecture-list.active {
+        display: block;
+      }
+
+      .lecture-list h2 {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .lecture-item {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 15px 20px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .lecture-item:hover {
+        background: rgba(74, 158, 255, 0.15);
+        border-color: #4a9eff;
+      }
+
+      .lecture-item .arrow {
+        color: #4a9eff;
+        font-size: 1.2em;
+      }
+
+      .back-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 15px;
+        font-size: 1em;
+        transition: all 0.3s;
+      }
+
+      .back-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .content-display {
+        display: none;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .content-display.active {
+        display: block;
+      }
+
+      .content-display .box {
+        background: rgba(37, 56, 57, 0.696);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+      }
+
+      .content-display h2 {
+        color: #02718f;
+        margin-bottom: 15px;
+        font-size: 1.4em;
+      }
+
+      .content-display h3 {
+        color: #6affff;
+        margin: 15px 0 10px;
+        font-size: 1.1em;
+      }
+
+      .content-display ul,
+      .content-display ol {
+        padding-right: 20px;
+        margin: 10px 0;
+      }
+
+      .content-display li {
+        margin-bottom: 8px;
+      }
+      .content-display p {
+        margin-bottom: 10px;
+        text-align: justify;
+      }
+      .content-display strong {
+        color: #6adfff;
+      }
+
+      .exam-section {
+        display: none;
+        margin-top: 25px;
+        padding-top: 25px;
+        border-top: 2px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .exam-section.active {
+        display: block;
+      }
+
+      .exam-tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .exam-tab {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.95em;
+      }
+
+      .exam-tab:hover,
+      .exam-tab.active {
+        background: #4a9eff;
+        border-color: #4a9eff;
+      }
+
+      .question-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+      }
+
+      .question-card .q-number {
+        display: inline-block;
+        background: #4a9eff;
+        color: #fff;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        margin-left: 10px;
+        font-weight: bold;
+      }
+
+      .question-card .q-text {
+        font-size: 1.05em;
+        margin-bottom: 15px;
+        display: inline;
+      }
+
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 15px;
+      }
+
+      .option-btn {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #fff;
+        padding: 12px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        text-align: right;
+        transition: all 0.3s;
+        font-size: 0.95em;
+      }
+
+      .option-btn:hover {
+        background: rgba(74, 158, 255, 0.2);
+        border-color: #4a9eff;
+      }
+
+      .option-btn.selected {
+        background: rgba(74, 158, 255, 0.4);
+        border-color: #4a9eff;
+      }
+
+      .option-btn.disabled {
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      .option-btn.correct-after {
+        background: rgba(46, 204, 113, 0.3) !important;
+        border-color: #2ecc71 !important;
+      }
+
+      .option-btn.wrong-after {
+        background: rgba(231, 76, 60, 0.3) !important;
+        border-color: #e74c3c !important;
+      }
+
+      .tf-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .tf-btn {
+        flex: 1;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #fff;
+        cursor: pointer;
+        font-size: 1em;
+        transition: all 0.3s;
+      }
+
+      .tf-btn.true-btn {
+        background: rgba(46, 204, 113, 0.15);
+      }
+      .tf-btn.false-btn {
+        background: rgba(231, 76, 60, 0.15);
+      }
+
+      .tf-btn:hover {
+        opacity: 0.8;
+      }
+      .tf-btn.selected {
+        background: rgba(74, 158, 255, 0.4);
+        border-color: #4a9eff;
+      }
+
+      .tf-btn.correct-after {
+        background: rgba(46, 204, 113, 0.5) !important;
+      }
+      .tf-btn.wrong-after {
+        background: rgba(231, 76, 60, 0.5) !important;
+      }
+      .tf-btn.disabled {
+        pointer-events: none;
+      }
+
+      .essay-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+      }
+
+      .essay-card .model-answer {
+        display: none;
+        margin-top: 15px;
+        padding: 15px;
+        background: rgba(46, 204, 113, 0.1);
+        border: 1px solid rgba(46, 204, 113, 0.3);
+        border-radius: 8px;
+      }
+
+      .essay-card .model-answer.show {
+        display: block;
+      }
+
+      .show-answer-btn {
+        background: #4a9eff;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 0.95em;
+      }
+
+      .show-answer-btn:hover {
+        background: #357abd;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 40px;
+        font-size: 1.2em;
+        color: #4a9eff;
+      }
+
+      .loading::after {
+        content: "";
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #4a9eff;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
         }
+      }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+      .exam-status {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 12px 20px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
 
-        header {
-            text-align: center;
-            padding: 30px 20px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.1);
+      .questions-status {
+        font-size: 0.95em;
+        color: #aaa;
+      }
+
+      .questions-status span {
+        color: #4a9eff;
+        font-weight: bold;
+      }
+
+      .submit-exam-btn {
+        display: block;
+        width: 100%;
+        background: linear-gradient(135deg, #2ecc71, #27ae60);
+        border: none;
+        color: #fff;
+        padding: 15px 25px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 1.2em;
+        font-weight: bold;
+        margin: 20px 0;
+        transition: all 0.3s;
+        text-align: center;
+      }
+
+      .submit-exam-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(46, 204, 113, 0.3);
+      }
+
+      .reset-exam-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 15px 20px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: bold;
+        transition: all 0.3s;
+      }
+
+      .reset-exam-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .result-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .result-modal {
+        background: linear-gradient(135deg, #1e2a3a, #0f1724);
+        border-radius: 25px;
+        padding: 35px;
+        max-width: 450px;
+        width: 90%;
+        text-align: center;
+        border: 2px solid #4a9eff;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
         }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
 
-        header h1 { font-size: 2em; margin-bottom: 10px; }
-        header p { color: #aaa; }
+      .result-modal h2 {
+        color: #4a9eff;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+      }
 
+      .result-score {
+        font-size: 3.5em;
+        font-weight: bold;
+        margin: 20px 0;
+      }
+
+      .result-score.pass {
+        color: #2ecc71;
+      }
+      .result-score.fail {
+        color: #e74c3c;
+      }
+
+      .result-message {
+        font-size: 1.1em;
+        margin: 15px 0;
+        color: #ccc;
+      }
+
+      .result-details {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 15px;
+        margin: 20px 0;
+        text-align: right;
+      }
+
+      .result-details div {
+        margin: 8px 0;
+      }
+
+      .close-result-btn {
+        background: #4a9eff;
+        border: none;
+        color: #fff;
+        padding: 12px 30px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .close-result-btn:hover {
+        background: #357abd;
+      }
+
+      .sources-section {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 2px dashed rgba(255, 255, 255, 0.15);
+      }
+
+      .sources-section h3 {
+        color: #f1c40f;
+        margin-bottom: 15px;
+        font-size: 1.1em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .source-item {
+        background: rgba(241, 196, 15, 0.08);
+        border: 1px solid rgba(241, 196, 15, 0.25);
+        border-radius: 10px;
+        padding: 15px 20px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .source-item:hover {
+        background: rgba(241, 196, 15, 0.2);
+        border-color: #f1c40f;
+        transform: translateX(-3px);
+      }
+
+      .source-item .arrow {
+        color: #f1c40f;
+        font-size: 1.2em;
+      }
+
+      /* PDF Viewer Modal */
+      .pdf-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 2000;
+        flex-direction: column;
+      }
+
+      .pdf-modal.active {
+        display: flex;
+      }
+
+      .pdf-toolbar {
+        background: #1a1a2e;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #333;
+      }
+
+      .pdf-toolbar h3 {
+        color: #fff;
+        font-size: 1.1em;
+      }
+
+      .exit-pdf-btn {
+        background: #e74c3c;
+        border: none;
+        color: #fff;
+        padding: 8px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: bold;
+        transition: all 0.3s;
+      }
+
+      .exit-pdf-btn:hover {
+        background: #c0392b;
+        transform: scale(1.02);
+      }
+
+      .pdf-iframe {
+        flex: 1;
+        width: 100%;
+        border: none;
+      }
+
+      /* ===== SOLVED DOCUMENT STYLES ===== */
+      .solved-document {
+        font-family: "Segoe UI", "Cairo", sans-serif;
+      }
+
+      .solved-document .doc-container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .solved-document .doc-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px 30px;
+        text-align: center;
+      }
+
+      .solved-document .doc-header h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .solved-document .doc-header p {
+        font-size: 1.1em;
+        opacity: 0.95;
+        font-weight: 300;
+      }
+
+      .solved-document .doc-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 30px;
+        background: #f8f9fa;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .solved-document .print-btn {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .solved-document .print-btn:hover {
+        background: #764ba2;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .solved-document .doc-stats {
+        display: flex;
+        gap: 20px;
+        font-size: 0.95em;
+        color: #555;
+      }
+
+      .solved-document .doc-stats span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .solved-document .doc-content {
+        padding: 40px 30px;
+        background: white;
+      }
+
+      .solved-document .question-block {
+        margin-bottom: 35px;
+        padding: 25px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        border-right: 5px solid #667eea;
+        transition: all 0.3s ease;
+      }
+
+      .solved-document .question-block:hover {
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.15);
+        transform: translateX(-5px);
+      }
+
+      .solved-document .question-block.true-answer {
+        border-right-color: #4caf50;
+      }
+
+      .solved-document .question-block.false-answer {
+        border-right-color: #ff6b6b;
+      }
+
+      .solved-document .question-number {
+        font-size: 0.85em;
+        color: #999;
+        font-weight: 600;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .solved-document .question-text {
+        font-size: 1.05em;
+        color: #333;
+        margin-bottom: 15px;
+        line-height: 1.6;
+        font-weight: 500;
+      }
+
+      .solved-document .answer-section {
+        margin-top: 15px;
+        padding: 15px;
+        background: white;
+        border-radius: 8px;
+      }
+
+      .solved-document .answer-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        font-size: 0.95em;
+        margin-bottom: 10px;
+      }
+
+      .solved-document .answer-label.true-label {
+        color: #4caf50;
+      }
+
+      .solved-document .answer-label.true-label::before {
+        content: "✓";
+        font-size: 1.3em;
+      }
+
+      .solved-document .answer-label.false-label {
+        color: #ff6b6b;
+      }
+
+      .solved-document .answer-label.false-label::before {
+        content: "✗";
+        font-size: 1.3em;
+      }
+
+      .solved-document .explanation-box {
+        margin-top: 12px;
+        padding: 12px;
+        background: #fff5f5;
+        border-right: 3px solid #ff6b6b;
+        border-radius: 4px;
+        line-height: 1.7;
+        color: #333;
+        font-size: 0.95em;
+      }
+
+      .solved-document .explanation-box strong {
+        color: #d32f2f;
+      }
+
+      .solved-document .section-title {
+        font-size: 1.4em;
+        font-weight: 700;
+        color: #667eea;
+        margin: 40px 0 20px 0;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #667eea;
+      }
+
+      .solved-document .section-title:first-of-type {
+        margin-top: 0;
+      }
+
+      .solved-document .doc-footer {
+        text-align: center;
+        padding: 30px;
+        background: #f8f9fa;
+        color: #999;
+        font-size: 0.9em;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      @media print {
+        .solved-document {
+          background: white;
+        }
+        .solved-document .doc-container {
+          box-shadow: none;
+          border-radius: 0;
+        }
+        .solved-document .doc-controls {
+          display: none;
+        }
+        .solved-document .question-block {
+          page-break-inside: avoid;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .solved-document .doc-header h1 {
+          font-size: 1.8em;
+        }
+        .solved-document .doc-content {
+          padding: 20px 15px;
+        }
+        .solved-document .question-block {
+          padding: 15px;
+        }
+        .solved-document .doc-controls {
+          flex-direction: column;
+          gap: 15px;
+          align-items: stretch;
+        }
+        .solved-document .doc-stats {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+      }
+      /* ===== END SOLVED DOCUMENT STYLES ===== */
+      @media (max-width: 600px) {
+        .solved-document {
+          padding: 20px;
+        }
+        .solved-document .question-item {
+          padding: 15px;
+        }
+        .solved-document .answer-row,
+        .solved-document .explanation-box {
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+      @media (max-width: 600px) {
+        .container {
+          padding: 10px;
+        }
+        header h1 {
+          font-size: 1.5em;
+        }
         .subjects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 25px;
+          grid-template-columns: 1fr;
         }
-
-        .subject-card {
-            background: rgba(15, 118, 113, 0.08);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 15px;
-            padding: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .subject-card:hover {
-            background: rgba(7, 150, 138, 0.306);
-            transform: translateY(-3px);
-            border-color: #07637a;
-        }
-
-        .subject-card .icon { font-size: 2.5em; margin-bottom: 10px; }
-        .subject-card h3 { font-size: 1.2em; }
-
-        .lecture-list {
-            display: none;
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .lecture-list.active { display: block; }
-
-        .lecture-list h2 {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .lecture-item {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .lecture-item:hover {
-            background: rgba(74, 158, 255, 0.15);
-            border-color: #4a9eff;
-        }
-
-        .lecture-item .arrow { color: #4a9eff; font-size: 1.2em; }
-
-        .back-btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-bottom: 15px;
-            font-size: 1em;
-            transition: all 0.3s;
-        }
-
-        .back-btn:hover { background: rgba(255,255,255,0.2); }
-
-        .content-display {
-            display: none;
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .content-display.active { display: block; }
-
-        .content-display .box {
-            background: rgba(37, 56, 57, 0.696);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-        }
-
-        .content-display h2 {
-            color: #02718f;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-        }
-
-        .content-display h3 {
-            color: #6affff;
-            margin: 15px 0 10px;
-            font-size: 1.1em;
-        }
-
-        .content-display ul, .content-display ol {
-            padding-right: 20px;
-            margin: 10px 0;
-        }
-
-        .content-display li { margin-bottom: 8px; }
-        .content-display p { margin-bottom: 10px; text-align: justify; }
-        .content-display strong { color: #6adfff; }
-
-        .exam-section {
-            display: none;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 2px solid rgba(255,255,255,0.1);
-        }
-
-        .exam-section.active { display: block; }
-
         .exam-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+          justify-content: center;
         }
-
-        .exam-tab {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.95em;
-        }
-
-        .exam-tab:hover, .exam-tab.active {
-            background: #4a9eff;
-            border-color: #4a9eff;
-        }
-
-        .question-card {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-        }
-
-        .question-card .q-number {
-            display: inline-block;
-            background: #4a9eff;
-            color: #fff;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 30px;
-            margin-left: 10px;
-            font-weight: bold;
-        }
-
-        .question-card .q-text {
-            font-size: 1.05em;
-            margin-bottom: 15px;
-            display: inline;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .option-btn {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
-            color: #fff;
-            padding: 12px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: right;
-            transition: all 0.3s;
-            font-size: 0.95em;
-        }
-
-        .option-btn:hover {
-            background: rgba(74, 158, 255, 0.2);
-            border-color: #4a9eff;
-        }
-
-        .option-btn.selected {
-            background: rgba(74, 158, 255, 0.4);
-            border-color: #4a9eff;
-        }
-
-        .option-btn.disabled { pointer-events: none; opacity: 0.7; }
-        
-        .option-btn.correct-after {
-            background: rgba(46, 204, 113, 0.3) !important;
-            border-color: #2ecc71 !important;
-        }
-
-        .option-btn.wrong-after {
-            background: rgba(231, 76, 60, 0.3) !important;
-            border-color: #e74c3c !important;
-        }
-
-        .tf-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .tf-btn {
-            flex: 1;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.15);
-            color: #fff;
-            cursor: pointer;
-            font-size: 1em;
-            transition: all 0.3s;
-        }
-
-        .tf-btn.true-btn { background: rgba(46, 204, 113, 0.15); }
-        .tf-btn.false-btn { background: rgba(231, 76, 60, 0.15); }
-
-        .tf-btn:hover { opacity: 0.8; }
-        .tf-btn.selected {
-            background: rgba(74, 158, 255, 0.4);
-            border-color: #4a9eff;
-        }
-        
-        .tf-btn.correct-after { background: rgba(46, 204, 113, 0.5) !important; }
-        .tf-btn.wrong-after { background: rgba(231, 76, 60, 0.5) !important; }
-        .tf-btn.disabled { pointer-events: none; }
-
-        .essay-card {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-        }
-
-        .essay-card .model-answer {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            background: rgba(46, 204, 113, 0.1);
-            border: 1px solid rgba(46, 204, 113, 0.3);
-            border-radius: 8px;
-        }
-
-        .essay-card .model-answer.show { display: block; }
-
-        .show-answer-btn {
-            background: #4a9eff;
-            border: none;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
-            font-size: 0.95em;
-        }
-
-        .show-answer-btn:hover { background: #357abd; }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            font-size: 1.2em;
-            color: #4a9eff;
-        }
-
-        .loading::after {
-            content: '';
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #4a9eff;
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        .exam-status {
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: 12px 20px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .questions-status {
-            font-size: 0.95em;
-            color: #aaa;
-        }
-
-        .questions-status span {
-            color: #4a9eff;
-            font-weight: bold;
-        }
-
-        .submit-exam-btn {
-            display: block;
-            width: 100%;
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            border: none;
-            color: #fff;
-            padding: 15px 25px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 1.2em;
-            font-weight: bold;
-            margin: 20px 0;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .submit-exam-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(46, 204, 113, 0.3);
-        }
-
-        .reset-exam-btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            padding: 15px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .reset-exam-btn:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
-        .result-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .result-modal {
-            background: linear-gradient(135deg, #1e2a3a, #0f1724);
-            border-radius: 25px;
-            padding: 35px;
-            max-width: 450px;
-            width: 90%;
-            text-align: center;
-            border: 2px solid #4a9eff;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .result-modal h2 {
-            color: #4a9eff;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
-
-        .result-score {
-            font-size: 3.5em;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        .result-score.pass { color: #2ecc71; }
-        .result-score.fail { color: #e74c3c; }
-
-        .result-message {
-            font-size: 1.1em;
-            margin: 15px 0;
-            color: #ccc;
-        }
-
-        .result-details {
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: 15px;
-            margin: 20px 0;
-            text-align: right;
-        }
-
-        .result-details div {
-            margin: 8px 0;
-        }
-
-        .close-result-btn {
-            background: #4a9eff;
-            border: none;
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .close-result-btn:hover { background: #357abd; }
-
-        .sources-section {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 2px dashed rgba(255,255,255,0.15);
-        }
-
-        .sources-section h3 {
-            color: #f1c40f;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .source-item {
-            background: rgba(241, 196, 15, 0.08);
-            border: 1px solid rgba(241, 196, 15, 0.25);
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .source-item:hover {
-            background: rgba(241, 196, 15, 0.2);
-            border-color: #f1c40f;
-            transform: translateX(-3px);
-        }
-
-        .source-item .arrow { color: #f1c40f; font-size: 1.2em; }
-
-        /* PDF Viewer Modal */
-        .pdf-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 2000;
-            flex-direction: column;
-        }
-
-        .pdf-modal.active {
-            display: flex;
-        }
-
-        .pdf-toolbar {
-            background: #1a1a2e;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
-        }
-
         .pdf-toolbar h3 {
-            color: #fff;
-            font-size: 1.1em;
+          font-size: 0.9em;
         }
-
         .exit-pdf-btn {
-            background: #e74c3c;
-            border: none;
-            color: #fff;
-            padding: 8px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            transition: all 0.3s;
+          padding: 6px 15px;
         }
-
-        .exit-pdf-btn:hover {
-            background: #c0392b;
-            transform: scale(1.02);
-        }
-
-        .pdf-iframe {
-            flex: 1;
-            width: 100%;
-            border: none;
-        }
-
-        @media (max-width: 600px) {
-            .container { padding: 10px; }
-            header h1 { font-size: 1.5em; }
-            .subjects-grid { grid-template-columns: 1fr; }
-            .exam-tabs { justify-content: center; }
-            .pdf-toolbar h3 { font-size: 0.9em; }
-            .exit-pdf-btn { padding: 6px 15px; }
-        }
+      }
     </style>
-</head>
-<body>
+    <base target="_blank" />
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>🎓 منصة الامتحانات</h1>
-            <p>لا تقلق هتتلم كوباية جد وساعتين شاي واخترلك حاجة تبصمجها</p>
-        </header>
+      <header>
+        <h1>🎓 منصة الامتحانات</h1>
+        <p>لا تقلق هتتلم كوباية جد وساعتين شاي واخترلك حاجة تبصمجها</p>
+      </header>
 
-        <div id="subjectsView">
-            <div class="subjects-grid" id="subjectsGrid"></div>
+      <div id="subjectsView">
+        <div class="subjects-grid" id="subjectsGrid"></div>
+      </div>
+
+      <div id="lecturesView" style="display: none">
+        <button class="back-btn" onclick="showSubjects()">← رجوع للمواد</button>
+        <div class="lecture-list" id="lectureList"></div>
+      </div>
+
+      <div id="contentView" style="display: none">
+        <button class="back-btn" onclick="showLectures()">
+          ← رجوع للمحاضرات
+        </button>
+        <div id="loadingIndicator" class="loading" style="display: none">
+          جاري تحميل المحاضرة...
+        </div>
+        <div class="content-display" id="lectureContent"></div>
+
+        <div class="sources-section" id="sourcesSection" style="display: none">
+          <h3>📚 المصادر والمراجع (PDF)</h3>
+          <div id="sourcesList"></div>
         </div>
 
-        <div id="lecturesView" style="display:none;">
-            <button class="back-btn" onclick="showSubjects()">← رجوع للمواد</button>
-            <div class="lecture-list" id="lectureList"></div>
-        </div>
-
-        <div id="contentView" style="display:none;">
-            <button class="back-btn" onclick="showLectures()">← رجوع للمحاضرات</button>
-            <div id="loadingIndicator" class="loading" style="display:none;">جاري تحميل المحاضرة...</div>
-            <div class="content-display" id="lectureContent"></div>
-
-            <div class="sources-section" id="sourcesSection" style="display:none;">
-                <h3>📚 المصادر والمراجع (PDF)</h3>
-                <div id="sourcesList"></div>
+        <div class="exam-section" id="examSection">
+          <h2 style="margin-bottom: 20px">📝 الامتحان</h2>
+          <div class="exam-status" id="examStatus">
+            <div class="questions-status">
+              📊 عدد الأسئلة: <span id="totalQuestionsDisplay">0</span>
             </div>
-
-            <div class="exam-section" id="examSection">
-                <h2 style="margin-bottom:20px;">📝 الامتحان</h2>
-                <div class="exam-status" id="examStatus">
-                    <div class="questions-status">📊 عدد الأسئلة: <span id="totalQuestionsDisplay">0</span></div>
-                    <div class="questions-status">✅ تم الإجابة: <span id="answeredCountDisplay">0</span></div>
-                    <div class="questions-status">⏳ المتبقي: <span id="remainingDisplay">0</span></div>
-                </div>
-                <div class="exam-tabs" id="examTabs"></div>
-                <div id="examContent"></div>
-                <div style="display: flex; gap: 15px; margin-top: 20px;">
-                    <button class="submit-exam-btn" id="submitExamBtn" onclick="submitExam()" style="flex: 2;">🏆 إنهاء الامتحان وحساب النتيجة</button>
-                    <button class="reset-exam-btn" id="resetExamBtn" onclick="resetCurrentExam()" style="flex: 1;">🔄 إعادة الامتحان</button>
-                </div>
+            <div class="questions-status">
+              ✅ تم الإجابة: <span id="answeredCountDisplay">0</span>
             </div>
+            <div class="questions-status">
+              ⏳ المتبقي: <span id="remainingDisplay">0</span>
+            </div>
+          </div>
+          <div class="exam-tabs" id="examTabs"></div>
+          <div id="examContent"></div>
+          <div style="display: flex; gap: 15px; margin-top: 20px">
+            <button
+              class="submit-exam-btn"
+              id="submitExamBtn"
+              onclick="submitExam()"
+              style="flex: 2"
+            >
+              🏆 إنهاء الامتحان وحساب النتيجة
+            </button>
+            <button
+              class="reset-exam-btn"
+              id="resetExamBtn"
+              onclick="resetCurrentExam()"
+              style="flex: 1"
+            >
+              🔄 إعادة الامتحان
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- PDF Modal with Exit Button -->
     <div class="pdf-modal" id="pdfModal">
-        <div class="pdf-toolbar">
-            <h3>📄 <span id="pdfTitle">عرض PDF</span></h3>
-            <button class="exit-pdf-btn" onclick="closePDF()">✖ خروج من الـ PDF</button>
-        </div>
-        <iframe class="pdf-iframe" id="pdfFrame" src=""></iframe>
+      <div class="pdf-toolbar">
+        <h3>📄 <span id="pdfTitle">عرض PDF</span></h3>
+        <button class="exit-pdf-btn" onclick="closePDF()">
+          ✖ خروج من الـ PDF
+        </button>
+      </div>
+      <iframe class="pdf-iframe" id="pdfFrame" src=""></iframe>
     </div>
 
     <div class="result-overlay" id="resultOverlay">
-        <div class="result-modal">
-            <h2>🏆 نتيجة الامتحان</h2>
-            <div class="result-score" id="resultScore">0 / 0</div>
-            <div class="result-message" id="resultMessage"></div>
-            <div class="result-details" id="resultDetails"></div>
-            <button class="close-result-btn" onclick="closeResult()">إغلاق</button>
-        </div>
+      <div class="result-modal">
+        <h2>🏆 نتيجة الامتحان</h2>
+        <div class="result-score" id="resultScore">0 / 0</div>
+        <div class="result-message" id="resultMessage"></div>
+        <div class="result-details" id="resultDetails"></div>
+        <button class="close-result-btn" onclick="closeResult()">إغلاق</button>
+      </div>
     </div>
 
     <script src="data.js"></script>
     <script>
-        let currentSubject = null;
-        let currentLecture = null;
-        let currentExamData = null;
-        let userAnswers = {};
-        let examSubmitted = false;
-        let finalScore = 0;
-        let finalTotal = 0;
+      let currentSubject = null;
+      let currentLecture = null;
+      let currentExamData = null;
+      let userAnswers = {};
+      let examSubmitted = false;
+      let finalScore = 0;
+      let finalTotal = 0;
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderSubjects();
-        });
+      document.addEventListener("DOMContentLoaded", () => {
+        renderSubjects();
+      });
 
-        function renderSubjects() {
-            const grid = document.getElementById('subjectsGrid');
-            const subjects = getAllSubjects();
+      function renderSubjects() {
+        const grid = document.getElementById("subjectsGrid");
+        const subjects = getAllSubjects();
 
-            grid.innerHTML = subjects.map(sub => `
+        grid.innerHTML = subjects
+          .map(
+            (sub) => `
                 <div class="subject-card" onclick="selectSubject('${sub.key}')">
                     <div class="icon">${getSubjectIcon(sub.key)}</div>
                     <h3>${sub.name}</h3>
                 </div>
-            `).join('');
-        }
+            `,
+          )
+          .join("");
+      }
 
-        function getSubjectIcon(key) {
-            const icons = { hr: '📚', comp: '⚖️', stats: '📊' };
-            return icons[key] || '📖';
-        }
+      function getSubjectIcon(key) {
+        const icons = { hr: "📚", comp: "⚖️", stats: "📊" };
+        return icons[key] || "📖";
+      }
 
-        function selectSubject(subjectKey) {
-            currentSubject = subjectKey;
-            const lectures = getSubjectLectures(subjectKey);
-            const subjectName = lecturesIndex[subjectKey].name;
+      function selectSubject(subjectKey) {
+        currentSubject = subjectKey;
+        const lectures = getSubjectLectures(subjectKey);
+        const subjectName = lecturesIndex[subjectKey].name;
 
-            document.getElementById('subjectsView').style.display = 'none';
-            document.getElementById('lecturesView').style.display = 'block';
+        document.getElementById("subjectsView").style.display = "none";
+        document.getElementById("lecturesView").style.display = "block";
 
-            const list = document.getElementById('lectureList');
-            list.classList.add('active');
-            list.innerHTML = `
+        const list = document.getElementById("lectureList");
+        list.classList.add("active");
+        list.innerHTML = `
                 <h2>${subjectName}</h2>
-                ${lectures.map(lec => `
+                ${lectures
+                  .map(
+                    (lec) => `
                     <div class="lecture-item" onclick="loadLectureContent('${lec.key}')">
                         <span>${lec.title}</span>
                         <span class="arrow">←</span>
                     </div>
-                `).join('')}
+                `,
+                  )
+                  .join("")}
             `;
+      }
+
+      async function loadLectureContent(lectureKey) {
+        currentLecture = lectureKey;
+        resetExam();
+
+        document.getElementById("sourcesSection").style.display = "none";
+        document.getElementById("lecturesView").style.display = "none";
+        document.getElementById("contentView").style.display = "block";
+        document.getElementById("loadingIndicator").style.display = "block";
+        document.getElementById("lectureContent").classList.remove("active");
+        document.getElementById("examSection").classList.remove("active");
+
+        const data = await loadLecture(lectureKey);
+
+        document.getElementById("loadingIndicator").style.display = "none";
+
+        if (!data) {
+          document.getElementById("lectureContent").innerHTML =
+            '<div class="box">❌ فشل تحميل المحاضرة</div>';
+          document.getElementById("lectureContent").classList.add("active");
+          return;
         }
 
-        async function loadLectureContent(lectureKey) {
-            currentLecture = lectureKey;
-            resetExam();
-
-            document.getElementById('sourcesSection').style.display = 'none';
-            document.getElementById('lecturesView').style.display = 'none';
-            document.getElementById('contentView').style.display = 'block';
-            document.getElementById('loadingIndicator').style.display = 'block';
-            document.getElementById('lectureContent').classList.remove('active');
-            document.getElementById('examSection').classList.remove('active');
-
-            const data = await loadLecture(lectureKey);
-
-            document.getElementById('loadingIndicator').style.display = 'none';
-
-            if (!data) {
-                document.getElementById('lectureContent').innerHTML = '<div class="box">❌ فشل تحميل المحاضرة</div>';
-                document.getElementById('lectureContent').classList.add('active');
-                return;
-            }
-
-            if (data.isSources || (data.sources && data.sources.length > 0) || lectureKey === 'hr_sources') {
-                document.getElementById('sourcesSection').style.display = 'block';
-                renderSources(data);
-                document.getElementById('lectureContent').innerHTML = `
-                    <h2>📚 ${data.title || 'المصادر والمراجع'}</h2>
-                    <div class="lec-content">${data.content || '<p>اختر من المصادر أدناه لعرض المحاضرات كملفات PDF</p>'}</div>
+        if (
+          data.isSources ||
+          (data.sources && data.sources.length > 0) ||
+          lectureKey === "hr_sources"
+        ) {
+          document.getElementById("sourcesSection").style.display = "block";
+          renderSources(data);
+          document.getElementById("lectureContent").innerHTML = `
+                    <h2>📚 ${data.title || "المصادر والمراجع"}</h2>
+                    <div class="lec-content">${data.content || "<p>اختر من المصادر أدناه لعرض المحاضرات كملفات PDF</p>"}</div>
                 `;
-                document.getElementById('lectureContent').classList.add('active');
-                document.getElementById('examSection').classList.remove('active');
-                return;
-            }
-
-            currentExamData = data.exam;
-
-            document.getElementById('lectureContent').innerHTML = `
-                <h2>${data.title || 'المحاضرة'}</h2>
-                <div class="lec-content">${data.content || '<p>لا يوجد محتوى لهذه المحاضرة</p>'}</div>
-            `;
-            document.getElementById('lectureContent').classList.add('active');
-
-            if (currentExamData && (currentExamData.multipleChoice?.length > 0 || currentExamData.trueFalse?.length > 0 || currentExamData.essay?.length > 0)) {
-                renderExamTabs(currentExamData);
-                document.getElementById('examSection').classList.add('active');
-                updateStatusBar();
-            } else {
-                document.getElementById('examSection').classList.remove('active');
-            }
+          document.getElementById("lectureContent").classList.add("active");
+          document.getElementById("examSection").classList.remove("active");
+          return;
         }
 
-        function renderSources(data) {
-            const sourcesContainer = document.getElementById('sourcesList');
-            const sources = data.sources || [];
-            
-            if (sources.length === 0) {
-                sourcesContainer.innerHTML = '<div class="source-item">لا توجد مصادر لعرضها</div>';
-                return;
-            }
-            
-            sourcesContainer.innerHTML = sources.map((src, index) => `
-                <div class="source-item" onclick="openPDF('${src.filePath || src.link || ''}', '${src.name || src.title}')">
+        currentExamData = data.exam;
+
+        // Handle solved document (basmaga style)
+        if (data.isSolvedDocument && currentExamData) {
+          document.getElementById("lectureContent").innerHTML = `
+                    <h2>${data.title || "المحاضرة"}</h2>
+                    <div class="lec-content">${data.content || "<p>لا يوجد محتوى نصي لهذه المحاضرة</p>"}</div>
+                `;
+          document.getElementById("lectureContent").classList.add("active");
+          renderSolvedDocument(currentExamData);
+          document.getElementById("examSection").classList.add("active");
+          // Hide exam status and buttons for solved documents
+          document.getElementById("examStatus").style.display = "none";
+          document.getElementById("submitExamBtn").style.display = "none";
+          document.getElementById("resetExamBtn").style.display = "none";
+          document.getElementById("examTabs").style.display = "none";
+          return;
+        }
+
+        document.getElementById("lectureContent").innerHTML = `
+                <h2>${data.title || "المحاضرة"}</h2>
+                <div class="lec-content">${data.content || "<p>لا يوجد محتوى لهذه المحاضرة</p>"}</div>
+            `;
+        document.getElementById("lectureContent").classList.add("active");
+
+        if (
+          currentExamData &&
+          (currentExamData.multipleChoice?.length > 0 ||
+            currentExamData.trueFalse?.length > 0 ||
+            currentExamData.essay?.length > 0)
+        ) {
+          renderExamTabs(currentExamData);
+          document.getElementById("examSection").classList.add("active");
+          updateStatusBar();
+        } else {
+          document.getElementById("examSection").classList.remove("active");
+        }
+      }
+
+      function renderSources(data) {
+        const sourcesContainer = document.getElementById("sourcesList");
+        const sources = data.sources || [];
+
+        if (sources.length === 0) {
+          sourcesContainer.innerHTML =
+            '<div class="source-item">لا توجد مصادر لعرضها</div>';
+          return;
+        }
+
+        sourcesContainer.innerHTML = sources
+          .map(
+            (src, index) => `
+                <div class="source-item" onclick="openPDF('${src.filePath || src.link || ""}', '${src.name || src.title}')">
                     <span>📄 ${src.order || index + 1}. ${src.name || src.title}</span>
                     <span class="arrow">←</span>
                 </div>
-            `).join('');
+            `,
+          )
+          .join("");
+      }
+
+      function openPDF(path, title) {
+        if (path) {
+          document.getElementById("pdfTitle").textContent = title || "عرض PDF";
+          document.getElementById("pdfFrame").src = path;
+          document.getElementById("pdfModal").classList.add("active");
+          document.body.style.overflow = "hidden";
+        } else {
+          alert("مسار الملف غير متوفر");
+        }
+      }
+
+      function closePDF() {
+        document.getElementById("pdfFrame").src = "";
+        document.getElementById("pdfModal").classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      function renderSolvedDocument(exam) {
+        const container = document.getElementById("examContent");
+
+        let totalCount = 0;
+        let correctCount = 0;
+        let wrongCount = 0;
+
+        let questionsHtml = "";
+
+        // Multiple choice questions
+        if (exam.multipleChoice && exam.multipleChoice.length > 0) {
+          questionsHtml +=
+            '<h2 class="section-title">أسئلة اختيار من متعدد</h2>';
+
+          exam.multipleChoice.forEach((q, i) => {
+            const correctIdx = parseInt(q.correctIndex);
+            totalCount++;
+            correctCount++;
+
+            questionsHtml += `
+                        <div class="question-block true-answer">
+                            <div class="question-number">السؤال ${i + 1}</div>
+                            <div class="question-text">${q.question}</div>
+                            <div class="answer-section">
+                                <div style="margin-top:10px;">
+                    `;
+
+            q.options.forEach((opt, j) => {
+              const isCorrect = j === correctIdx;
+              const style = isCorrect
+                ? "background:#e8f5e9; color:#2e7d32; border:1px solid #a5d6a7; padding:10px 16px; border-radius:8px; margin-bottom:8px; font-weight:bold; display:flex; align-items:center; gap:8px;"
+                : "background:#f5f5f5; color:#666; border:1px solid #e0e0e0; padding:10px 16px; border-radius:8px; margin-bottom:8px; display:flex; align-items:center; gap:8px;";
+              const icon = isCorrect ? "✓" : "";
+              const letter = String.fromCharCode(97 + j);
+
+              questionsHtml += `<div style="${style}"><span style="font-weight:bold;min-width:24px;">${icon} ${letter})</span> ${opt}</div>`;
+            });
+
+            questionsHtml += `
+                                </div>
+                            </div>
+                        </div>
+                    `;
+          });
         }
 
-        function openPDF(path, title) {
-            if (path) {
-                document.getElementById('pdfTitle').textContent = title || 'عرض PDF';
-                document.getElementById('pdfFrame').src = path;
-                document.getElementById('pdfModal').classList.add('active');
-                document.body.style.overflow = 'hidden';
-            } else {
-                alert('مسار الملف غير متوفر');
-            }
+        // True/False questions (if any)
+        if (exam.trueFalse && exam.trueFalse.length > 0) {
+          questionsHtml += '<h2 class="section-title">أسئلة صح وخطأ</h2>';
+
+          exam.trueFalse.forEach((q, i) => {
+            const isTrue = q.answer === "true";
+            const answerClass = isTrue ? "true-answer" : "false-answer";
+            const labelClass = isTrue ? "true-label" : "false-label";
+            const answerText = isTrue ? "صحيح ✓" : "خطأ ✗";
+
+            totalCount++;
+            if (isTrue) correctCount++;
+            else wrongCount++;
+
+            questionsHtml += `
+                        <div class="question-block ${answerClass}">
+                            <div class="question-number">السؤال ${i + 1}</div>
+                            <div class="question-text">${q.question}</div>
+                            <div class="answer-section">
+                                <div class="answer-label ${labelClass}">
+                                    <strong>${answerText}</strong>
+                                </div>
+                                ${q.explanation ? `<div class="explanation-box">${q.explanation}</div>` : ""}
+                            </div>
+                        </div>
+                    `;
+          });
         }
 
-        function closePDF() {
-            document.getElementById('pdfFrame').src = '';
-            document.getElementById('pdfModal').classList.remove('active');
-            document.body.style.overflow = '';
+        // Essay questions (if any)
+        if (exam.essay && exam.essay.length > 0) {
+          questionsHtml += '<h2 class="section-title">أسئلة مقالية</h2>';
+
+          exam.essay.forEach((q, i) => {
+            totalCount++;
+
+            questionsHtml += `
+                        <div class="question-block true-answer">
+                            <div class="question-number">السؤال ${i + 1}</div>
+                            <div class="question-text">${q.question}</div>
+                            <div class="answer-section">
+                                <div class="explanation-box" style="background:#e3f2fd; border-right-color:#2196f3; color:#1565c0;">
+                                    <strong>الإجابة النموذجية:</strong><br>
+                                    ${q.modelAnswer}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+          });
         }
 
-        function renderExamTabs(exam) {
-            const tabsContainer = document.getElementById('examTabs');
-            const tabs = [];
+        container.innerHTML = `
+                <div class="solved-document">
+                    <div class="doc-container">
+                        <div class="doc-header">
+                            <h1>📚 أسئلة محلولة</h1>
+                            <p>${currentExamData.title || "البصمجة - إدارة الشركات والحوكمة"}</p>
+                        </div>
+                        <div class="doc-controls">
+                            <button class="print-btn" onclick="window.print()">🖨️ اطبع أو احفظ كـ PDF</button>
+                            <div class="doc-stats">
+                                <span>📋 ${totalCount} أسئلة</span>
+                                <span>✅ ${correctCount} صحيح</span>
+                                <span>❌ ${wrongCount} خطأ</span>
+                            </div>
+                        </div>
+                        <div class="doc-content">
+                            ${questionsHtml}
+                        </div>
+                        <div class="doc-footer">
+                            تم إنشاء هذه الوثيقة بواسطة منصة الامتحانات 📝 | احفظها واطبعها للمراجعة
+                        </div>
+                    </div>
+                </div>
+            `;
+      }
 
-            if (exam.multipleChoice && exam.multipleChoice.length > 0) {
-                tabs.push({ key: 'mc', label: `✅ اختيار من متعدد (${exam.multipleChoice.length})` });
-            }
-            if (exam.trueFalse && exam.trueFalse.length > 0) {
-                tabs.push({ key: 'tf', label: `📋 صح / خطأ (${exam.trueFalse.length})` });
-            }
-            if (exam.essay && exam.essay.length > 0) {
-                tabs.push({ key: 'essay', label: `✍️ مقالي (${exam.essay.length})` });
-            }
+      function renderExamTabs(exam) {
+        const tabsContainer = document.getElementById("examTabs");
+        const tabs = [];
 
-            if (tabs.length === 0) {
-                document.getElementById('examSection').classList.remove('active');
-                return;
-            }
-
-            tabsContainer.innerHTML = tabs.map((tab, i) => `
-                <button class="exam-tab ${i === 0 ? 'active' : ''}" data-tab="${tab.key}" onclick="showExamTab('${tab.key}')">${tab.label}</button>
-            `).join('');
-
-            showExamTab(tabs[0].key);
+        if (exam.multipleChoice && exam.multipleChoice.length > 0) {
+          tabs.push({
+            key: "mc",
+            label: `✅ اختيار من متعدد (${exam.multipleChoice.length})`,
+          });
+        }
+        if (exam.trueFalse && exam.trueFalse.length > 0) {
+          tabs.push({
+            key: "tf",
+            label: `📋 صح / خطأ (${exam.trueFalse.length})`,
+          });
+        }
+        if (exam.essay && exam.essay.length > 0) {
+          tabs.push({ key: "essay", label: `✍️ مقالي (${exam.essay.length})` });
         }
 
-        function showExamTab(tabKey) {
-            document.querySelectorAll('.exam-tab').forEach(tab => tab.classList.remove('active'));
-            const activeBtn = document.querySelector(`.exam-tab[data-tab="${tabKey}"]`);
-            if (activeBtn) activeBtn.classList.add('active');
-
-            const container = document.getElementById('examContent');
-
-            if (tabKey === 'mc') {
-                renderMultipleChoice(container);
-            } else if (tabKey === 'tf') {
-                renderTrueFalse(container);
-            } else if (tabKey === 'essay') {
-                renderEssay(container);
-            }
+        if (tabs.length === 0) {
+          document.getElementById("examSection").classList.remove("active");
+          return;
         }
 
-        function renderMultipleChoice(container) {
-            const questions = currentExamData.multipleChoice;
-            if (!questions || questions.length === 0) {
-                container.innerHTML = '<div class="box">لا توجد أسئلة اختيار من متعدد</div>';
-                return;
-            }
-            
-            container.innerHTML = questions.map((q, i) => {
-                const qId = `mc_${i}`;
-                const selectedAnswer = userAnswers[qId];
-                
-                return `
+        tabsContainer.innerHTML = tabs
+          .map(
+            (tab, i) => `
+                <button class="exam-tab ${i === 0 ? "active" : ""}" data-tab="${tab.key}" onclick="showExamTab('${tab.key}')">${tab.label}</button>
+            `,
+          )
+          .join("");
+
+        showExamTab(tabs[0].key);
+      }
+
+      function showExamTab(tabKey) {
+        document
+          .querySelectorAll(".exam-tab")
+          .forEach((tab) => tab.classList.remove("active"));
+        const activeBtn = document.querySelector(
+          `.exam-tab[data-tab="${tabKey}"]`,
+        );
+        if (activeBtn) activeBtn.classList.add("active");
+
+        const container = document.getElementById("examContent");
+
+        if (tabKey === "mc") {
+          renderMultipleChoice(container);
+        } else if (tabKey === "tf") {
+          renderTrueFalse(container);
+        } else if (tabKey === "essay") {
+          renderEssay(container);
+        }
+      }
+
+      function renderMultipleChoice(container) {
+        const questions = currentExamData.multipleChoice;
+        if (!questions || questions.length === 0) {
+          container.innerHTML =
+            '<div class="box">لا توجد أسئلة اختيار من متعدد</div>';
+          return;
+        }
+
+        container.innerHTML = questions
+          .map((q, i) => {
+            const qId = `mc_${i}`;
+            const selectedAnswer = userAnswers[qId];
+
+            return `
                     <div class="question-card">
                         <div>
                             <span class="q-number">${i + 1}</span>
                             <span class="q-text">${q.question}</span>
                         </div>
                         <div class="options">
-                            ${q.options.map((opt, j) => {
-                                let additionalClass = '';
-                                if (!examSubmitted && selectedAnswer === j.toString()) {
-                                    additionalClass = 'selected';
+                            ${q.options
+                              .map((opt, j) => {
+                                let additionalClass = "";
+                                if (
+                                  !examSubmitted &&
+                                  selectedAnswer === j.toString()
+                                ) {
+                                  additionalClass = "selected";
                                 }
                                 if (examSubmitted) {
-                                    if (j.toString() === q.correctIndex) {
-                                        additionalClass = 'correct-after';
-                                    } else if (selectedAnswer === j.toString() && selectedAnswer !== q.correctIndex) {
-                                        additionalClass = 'wrong-after';
-                                    }
+                                  if (j.toString() === q.correctIndex) {
+                                    additionalClass = "correct-after";
+                                  } else if (
+                                    selectedAnswer === j.toString() &&
+                                    selectedAnswer !== q.correctIndex
+                                  ) {
+                                    additionalClass = "wrong-after";
+                                  }
                                 }
                                 return `<button class="option-btn ${additionalClass}" onclick="answerMC('${qId}', '${j}')">${opt}</button>`;
-                            }).join('')}
+                              })
+                              .join("")}
                         </div>
                     </div>
                 `;
-            }).join('');
+          })
+          .join("");
+      }
+
+      function answerMC(qId, selected) {
+        if (examSubmitted) return;
+        userAnswers[qId] = selected;
+
+        const activeTab = document.querySelector(".exam-tab.active");
+        if (activeTab && activeTab.dataset.tab === "mc") {
+          const container = document.getElementById("examContent");
+          renderMultipleChoice(container);
+        }
+        updateStatusBar();
+      }
+
+      function renderTrueFalse(container) {
+        const questions = currentExamData.trueFalse;
+        if (!questions || questions.length === 0) {
+          container.innerHTML = '<div class="box">لا توجد أسئلة صح/خطأ</div>';
+          return;
         }
 
-        function answerMC(qId, selected) {
-            if (examSubmitted) return;
-            userAnswers[qId] = selected;
-            
-            const activeTab = document.querySelector('.exam-tab.active');
-            if (activeTab && activeTab.dataset.tab === 'mc') {
-                const container = document.getElementById('examContent');
-                renderMultipleChoice(container);
-            }
-            updateStatusBar();
-        }
+        container.innerHTML = questions
+          .map((q, i) => {
+            const qId = `tf_${i}`;
+            const selectedAnswer = userAnswers[qId];
 
-        function renderTrueFalse(container) {
-            const questions = currentExamData.trueFalse;
-            if (!questions || questions.length === 0) {
-                container.innerHTML = '<div class="box">لا توجد أسئلة صح/خطأ</div>';
-                return;
+            let trueClass = "";
+            let falseClass = "";
+
+            if (!examSubmitted && selectedAnswer === "true")
+              trueClass = "selected";
+            if (!examSubmitted && selectedAnswer === "false")
+              falseClass = "selected";
+
+            if (examSubmitted) {
+              if (q.answer === "true") trueClass = "correct-after";
+              if (q.answer === "false") falseClass = "correct-after";
+              if (selectedAnswer === "true" && q.answer !== "true")
+                trueClass = "wrong-after";
+              if (selectedAnswer === "false" && q.answer !== "false")
+                falseClass = "wrong-after";
             }
-            
-            container.innerHTML = questions.map((q, i) => {
-                const qId = `tf_${i}`;
-                const selectedAnswer = userAnswers[qId];
-                
-                let trueClass = '';
-                let falseClass = '';
-                
-                if (!examSubmitted && selectedAnswer === 'true') trueClass = 'selected';
-                if (!examSubmitted && selectedAnswer === 'false') falseClass = 'selected';
-                
-                if (examSubmitted) {
-                    if (q.answer === 'true') trueClass = 'correct-after';
-                    if (q.answer === 'false') falseClass = 'correct-after';
-                    if (selectedAnswer === 'true' && q.answer !== 'true') trueClass = 'wrong-after';
-                    if (selectedAnswer === 'false' && q.answer !== 'false') falseClass = 'wrong-after';
-                }
-                
-                return `
+
+            return `
                     <div class="question-card">
                         <div>
                             <span class="q-number">${i + 1}</span>
@@ -901,29 +1452,32 @@
                         </div>
                     </div>
                 `;
-            }).join('');
+          })
+          .join("");
+      }
+
+      function answerTF(qId, selected) {
+        if (examSubmitted) return;
+        userAnswers[qId] = selected;
+
+        const activeTab = document.querySelector(".exam-tab.active");
+        if (activeTab && activeTab.dataset.tab === "tf") {
+          const container = document.getElementById("examContent");
+          renderTrueFalse(container);
+        }
+        updateStatusBar();
+      }
+
+      function renderEssay(container) {
+        const questions = currentExamData.essay;
+        if (!questions || questions.length === 0) {
+          container.innerHTML = '<div class="box">لا توجد أسئلة مقالية</div>';
+          return;
         }
 
-        function answerTF(qId, selected) {
-            if (examSubmitted) return;
-            userAnswers[qId] = selected;
-            
-            const activeTab = document.querySelector('.exam-tab.active');
-            if (activeTab && activeTab.dataset.tab === 'tf') {
-                const container = document.getElementById('examContent');
-                renderTrueFalse(container);
-            }
-            updateStatusBar();
-        }
-
-        function renderEssay(container) {
-            const questions = currentExamData.essay;
-            if (!questions || questions.length === 0) {
-                container.innerHTML = '<div class="box">لا توجد أسئلة مقالية</div>';
-                return;
-            }
-            
-            container.innerHTML = questions.map((q, i) => `
+        container.innerHTML = questions
+          .map(
+            (q, i) => `
                 <div class="essay-card">
                     <div>
                         <span class="q-number">${i + 1}</span>
@@ -935,175 +1489,193 @@
                         ${q.modelAnswer}
                     </div>
                 </div>
-            `).join('');
+            `,
+          )
+          .join("");
+      }
+
+      function toggleAnswer(index) {
+        if (!examSubmitted) {
+          alert("📌 يمكنك الاطلاع على الإجابة النموذجية بعد إنهاء الامتحان.");
+          return;
+        }
+        const el = document.getElementById(`essay-answer-${index}`);
+        if (el) el.classList.toggle("show");
+      }
+
+      function updateStatusBar() {
+        const total = getTotalObjectiveQuestions();
+        const answered = Object.keys(userAnswers).length;
+        const remaining = total - answered;
+
+        document.getElementById("totalQuestionsDisplay").textContent = total;
+        document.getElementById("answeredCountDisplay").textContent = answered;
+        document.getElementById("remainingDisplay").textContent = remaining;
+      }
+
+      function getTotalObjectiveQuestions() {
+        return (
+          (currentExamData?.multipleChoice?.length || 0) +
+          (currentExamData?.trueFalse?.length || 0)
+        );
+      }
+
+      function calculateFinalScore() {
+        let correct = 0;
+        if (currentExamData?.multipleChoice) {
+          currentExamData.multipleChoice.forEach((q, i) => {
+            const answer = userAnswers[`mc_${i}`];
+            if (answer !== undefined && answer === q.correctIndex) {
+              correct++;
+            }
+          });
+        }
+        if (currentExamData?.trueFalse) {
+          currentExamData.trueFalse.forEach((q, i) => {
+            const answer = userAnswers[`tf_${i}`];
+            if (answer !== undefined && answer === q.answer) {
+              correct++;
+            }
+          });
+        }
+        return correct;
+      }
+
+      function submitExam() {
+        if (examSubmitted) {
+          alert("تم إنهاء الامتحان بالفعل!");
+          return;
         }
 
-        function toggleAnswer(index) {
-            if (!examSubmitted) {
-                alert("📌 يمكنك الاطلاع على الإجابة النموذجية بعد إنهاء الامتحان.");
-                return;
-            }
-            const el = document.getElementById(`essay-answer-${index}`);
-            if (el) el.classList.toggle('show');
+        const totalQuestions = getTotalObjectiveQuestions();
+        const answeredCount = Object.keys(userAnswers).length;
+
+        if (answeredCount < totalQuestions) {
+          const remaining = totalQuestions - answeredCount;
+          if (
+            !confirm(
+              `⚠️ لم تقم بالإجابة على ${remaining} سؤال/أسئلة بعد.\n\nهل تريد إنهاء الامتحان وحساب النتيجة على الإجابات الحالية؟`,
+            )
+          ) {
+            return;
+          }
         }
 
-        function updateStatusBar() {
-            const total = getTotalObjectiveQuestions();
-            const answered = Object.keys(userAnswers).length;
-            const remaining = total - answered;
-            
-            document.getElementById('totalQuestionsDisplay').textContent = total;
-            document.getElementById('answeredCountDisplay').textContent = answered;
-            document.getElementById('remainingDisplay').textContent = remaining;
+        finalScore = calculateFinalScore();
+        finalTotal = totalQuestions;
+        examSubmitted = true;
+
+        const activeTab = document.querySelector(".exam-tab.active");
+        if (activeTab) {
+          const container = document.getElementById("examContent");
+          if (activeTab.dataset.tab === "mc") renderMultipleChoice(container);
+          else if (activeTab.dataset.tab === "tf") renderTrueFalse(container);
         }
 
-        function getTotalObjectiveQuestions() {
-            return (currentExamData?.multipleChoice?.length || 0) + (currentExamData?.trueFalse?.length || 0);
-        }
+        document.getElementById("examStatus").style.display = "none";
+        showResult();
+      }
 
-        function calculateFinalScore() {
-            let correct = 0;
-            if (currentExamData?.multipleChoice) {
-                currentExamData.multipleChoice.forEach((q, i) => {
-                    const answer = userAnswers[`mc_${i}`];
-                    if (answer !== undefined && answer === q.correctIndex) {
-                        correct++;
-                    }
-                });
-            }
-            if (currentExamData?.trueFalse) {
-                currentExamData.trueFalse.forEach((q, i) => {
-                    const answer = userAnswers[`tf_${i}`];
-                    if (answer !== undefined && answer === q.answer) {
-                        correct++;
-                    }
-                });
-            }
-            return correct;
-        }
+      function showResult() {
+        const percentage = (finalScore / finalTotal) * 100;
+        const isPass = percentage >= 60;
 
-        function submitExam() {
-            if (examSubmitted) {
-                alert('تم إنهاء الامتحان بالفعل!');
-                return;
-            }
-            
-            const totalQuestions = getTotalObjectiveQuestions();
-            const answeredCount = Object.keys(userAnswers).length;
-            
-            if (answeredCount < totalQuestions) {
-                const remaining = totalQuestions - answeredCount;
-                if (!confirm(`⚠️ لم تقم بالإجابة على ${remaining} سؤال/أسئلة بعد.\n\nهل تريد إنهاء الامتحان وحساب النتيجة على الإجابات الحالية؟`)) {
-                    return;
-                }
-            }
-            
-            finalScore = calculateFinalScore();
-            finalTotal = totalQuestions;
-            examSubmitted = true;
-            
-            const activeTab = document.querySelector('.exam-tab.active');
-            if (activeTab) {
-                const container = document.getElementById('examContent');
-                if (activeTab.dataset.tab === 'mc') renderMultipleChoice(container);
-                else if (activeTab.dataset.tab === 'tf') renderTrueFalse(container);
-            }
-            
-            document.getElementById('examStatus').style.display = 'none';
-            showResult();
-        }
-        
-        function showResult() {
-            const percentage = (finalScore / finalTotal) * 100;
-            const isPass = percentage >= 60;
-            
-            const resultScore = document.getElementById('resultScore');
-            resultScore.textContent = `${finalScore} / ${finalTotal}`;
-            resultScore.className = `result-score ${isPass ? 'pass' : 'fail'}`;
-            
-            let message = '';
-            if (percentage >= 90) message = '🎉 ممتاز! أداء رائع جداً!';
-            else if (percentage >= 75) message = '👍 جيد جداً! يمكنك التحسين أكثر.';
-            else if (percentage >= 60) message = '✅ مقبول! تحتاج إلى مذاكرة أكثر.';
-            else message = '📚 تحتاج إلى مراجعة المادة جيداً. حظاً موفقاً في المرة القادمة!';
-            
-            document.getElementById('resultMessage').innerHTML = message;
-            document.getElementById('resultDetails').innerHTML = `
+        const resultScore = document.getElementById("resultScore");
+        resultScore.textContent = `${finalScore} / ${finalTotal}`;
+        resultScore.className = `result-score ${isPass ? "pass" : "fail"}`;
+
+        let message = "";
+        if (percentage >= 90) message = "🎉 ممتاز! أداء رائع جداً!";
+        else if (percentage >= 75) message = "👍 جيد جداً! يمكنك التحسين أكثر.";
+        else if (percentage >= 60) message = "✅ مقبول! تحتاج إلى مذاكرة أكثر.";
+        else
+          message =
+            "📚 تحتاج إلى مراجعة المادة جيداً. حظاً موفقاً في المرة القادمة!";
+
+        document.getElementById("resultMessage").innerHTML = message;
+        document.getElementById("resultDetails").innerHTML = `
                 <div>📊 نسبة النجاح: ${percentage.toFixed(1)}%</div>
                 <div>✅ الإجابات الصحيحة: ${finalScore}</div>
                 <div>❌ الإجابات الخاطئة: ${finalTotal - finalScore}</div>
                 <div>📝 الأسئلة المقالية: ${currentExamData?.essay?.length || 0} (تحتاج إلى مراجعة يدوية)</div>
             `;
-            
-            document.getElementById('resultOverlay').style.display = 'flex';
-        }
-        
-        function closeResult() {
-            document.getElementById('resultOverlay').style.display = 'none';
-        }
-        
-        function resetExam() {
-            userAnswers = {};
-            examSubmitted = false;
-            finalScore = 0;
-            finalTotal = 0;
-            document.getElementById('examStatus').style.display = 'flex';
-        }
 
-        function resetCurrentExam() {
-            if (confirm('⚠️ هل تريد إعادة الامتحان؟ سيتم مسح جميع إجاباتك الحالية.')) {
-                userAnswers = {};
-                examSubmitted = false;
-                finalScore = 0;
-                finalTotal = 0;
-                
-                const statusBar = document.getElementById('examStatus');
-                if (statusBar) statusBar.style.display = 'flex';
-                
-                const resultOverlay = document.getElementById('resultOverlay');
-                if (resultOverlay) resultOverlay.style.display = 'none';
-                
-                const activeTab = document.querySelector('.exam-tab.active');
-                if (activeTab) {
-                    const container = document.getElementById('examContent');
-                    const tabKey = activeTab.dataset.tab;
-                    
-                    if (tabKey === 'mc') {
-                        renderMultipleChoice(container);
-                    } else if (tabKey === 'tf') {
-                        renderTrueFalse(container);
-                    }
-                }
-                
-                updateStatusBar();
-                alert('✅ تم إعادة ضبط الامتحان. يمكنك البدء من جديد.');
+        document.getElementById("resultOverlay").style.display = "flex";
+      }
+
+      function closeResult() {
+        document.getElementById("resultOverlay").style.display = "none";
+      }
+
+      function resetExam() {
+        userAnswers = {};
+        examSubmitted = false;
+        finalScore = 0;
+        finalTotal = 0;
+        document.getElementById("examStatus").style.display = "flex";
+      }
+
+      function resetCurrentExam() {
+        if (
+          confirm("⚠️ هل تريد إعادة الامتحان؟ سيتم مسح جميع إجاباتك الحالية.")
+        ) {
+          userAnswers = {};
+          examSubmitted = false;
+          finalScore = 0;
+          finalTotal = 0;
+
+          const statusBar = document.getElementById("examStatus");
+          if (statusBar) statusBar.style.display = "flex";
+
+          const resultOverlay = document.getElementById("resultOverlay");
+          if (resultOverlay) resultOverlay.style.display = "none";
+
+          const activeTab = document.querySelector(".exam-tab.active");
+          if (activeTab) {
+            const container = document.getElementById("examContent");
+            const tabKey = activeTab.dataset.tab;
+
+            if (tabKey === "mc") {
+              renderMultipleChoice(container);
+            } else if (tabKey === "tf") {
+              renderTrueFalse(container);
             }
-        }
+          }
 
-        function showSubjects() {
-            document.getElementById('subjectsView').style.display = 'block';
-            document.getElementById('lecturesView').style.display = 'none';
-            document.getElementById('contentView').style.display = 'none';
-            currentSubject = null;
-            currentLecture = null;
-            closePDF();
+          updateStatusBar();
+          alert("✅ تم إعادة ضبط الامتحان. يمكنك البدء من جديد.");
         }
+      }
 
-        function showLectures() {
-            document.getElementById('subjectsView').style.display = 'none';
-            document.getElementById('lecturesView').style.display = 'block';
-            document.getElementById('contentView').style.display = 'none';
-            currentLecture = null;
-            resetExam();
-            closePDF();
+      function showSubjects() {
+        document.getElementById("subjectsView").style.display = "block";
+        document.getElementById("lecturesView").style.display = "none";
+        document.getElementById("contentView").style.display = "none";
+        currentSubject = null;
+        currentLecture = null;
+        closePDF();
+      }
+
+      function showLectures() {
+        document.getElementById("subjectsView").style.display = "none";
+        document.getElementById("lecturesView").style.display = "block";
+        document.getElementById("contentView").style.display = "none";
+        currentLecture = null;
+        resetExam();
+        closePDF();
+        // Reset exam elements display for next lecture
+        document.getElementById("examStatus").style.display = "";
+        document.getElementById("submitExamBtn").style.display = "";
+        document.getElementById("resetExamBtn").style.display = "";
+        document.getElementById("examTabs").style.display = "";
+      }
+
+      // Close PDF on escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closePDF();
         }
-
-        // Close PDF on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closePDF();
-            }
-        });
+      });
     </script>
-</body>
+  </body>
 </html>
