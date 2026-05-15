@@ -77,6 +77,10 @@ const lecturesIndex = {
         file: "lectures/comp_lec5.js",
       },
     
+      basmaga: {
+        title: "📝 بصمجة - أسئلة صح وغلط",
+        file: "lectures/basmaga.js",
+      },
     com_sources: {
         title: "📚 المصادر والمراجع (PDF)",
         file: "lectures/com.sources.js",
