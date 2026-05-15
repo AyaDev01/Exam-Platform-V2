@@ -10,17 +10,42 @@ const lecturesIndex = {
         file: "lectures/hr_lec1.js",
       },
       hr_lec2: {
-        title: "المحاضرة الثانية: الإدارة الاستراتيجية للموارد البشرية والبيئة المتغيرة",
+        title:
+          "المحاضرة الثانية: الإدارة الاستراتيجية للموارد البشرية والبيئة المتغيرة",
         file: "lectures/hr_lec2.js",
       },
       hr_lec3: {
         title: "المحاضرة الثالثة: تحليل وتوصيف الوظائف",
         file: "lectures/hr_lec3.js",
       },
-      hr_lec4: {
-        title: "المحاضرة الرابعة: تخطيط الموارد البشرية",
-        file: "lectures/hr_lec4.js",
+      hr_lec4:{
+        title:"المحاضرة الرابعة: تخطيط الموارد البشرية",
+        file:"lectures/hr_lec4.js",
       },
+      hr_lec5:{
+        title:"المحاضرة الخامسة: الاستقطاب والتوظيف",
+        file:"lectures/hr_lec5.js",
+      },
+      hr_sec1: {
+        title: "سكشن  1 - تاريخ إدارة الموارد البشرية",
+        file: "lectures/hr_sec1.js",
+      },
+      hr_sec2: {
+        title: "سكشن  2 - بيئة متغيرة والتحديات الحديثة",
+        file: "lectures/hr_sec2.js",
+      },
+      hr_sec3: {
+        title: "سكشن  3 - تحليل الوظائف والخرائط التنظيمية",
+        file: "lectures/hr_sec3.js",
+      },
+       hr_sec4:{
+        title:"سكشن  4 - تخطيط الموارد البشرية",
+        file:"lectures/hr_sec4.js",
+       },
+       hr_sec5:{
+        title:"السكشن 5: الاستقطاب والتوظيف",
+        file:"lectures/hr_sec5.js",
+       },
       hr_sources: {
         title: "📚 المصادر والمراجع (PDF)",
         file: "lectures/hr_sources.js",
@@ -62,7 +87,8 @@ const lecturesIndex = {
         file: "lectures/stats_lec1.js",
       },
       stats_lec2: {
-        title: "📊 المحاضرة 2: المتغيرات العشوائية المنفصلة والتوزيعات الاحتمالية",
+        title:
+          "📊 المحاضرة 2: المتغيرات العشوائية المنفصلة والتوزيعات الاحتمالية",
         file: "lectures/stats_lec2.js",
       },
     },

@@ -38,7 +38,48 @@ const lectureData = {
             title: "المحاضرة الخامسة:الاستقطاب",
             filePath: "pdfs/المحاضرة الخامسة.pdf"
         },
-       
+        {
+            order:6,
+            name:"اسئلة المحاضرات من الاولي  الي الخامسة ",
+            title:"اسئلة المحاضرات من الاولي  الي الخامسة ",
+            filePath:"pdfs/اسئلة المحاضرات من الاولي  الي الخامسة HR.pdf",
+        },
+        {
+            order:7,
+            name:"أسئلة المحاضرات",
+            title:"أسئلة المحاضرات",
+            filePath:"pdfs/اسئلة المحاضرة الاولي hr.docx",
+        },
+        {
+            order:8,
+            name:"أسئلة الفصل الخامس",
+            title:"أسئلة الفصل الخامس",
+            filePath:"pdfs/.pdf",
+        },
+        {
+            order:9,
+            name:"أسئلة الفصل التالت",
+            title:"أسئلة الفصل التالت",
+            filePath:"pdfs/(1).pdf",
+        },
+        {
+            order:10,
+            name:"أسئلة الفصل الرابع",
+            title:"أسئلة الفصل الرابع",
+            filePath:"pdfs/(2).pdf",
+        },
+        {
+            order:11,
+            name:"أسئلة ",
+            title:"أسئلة",
+            filePath:"pdfs/1.pdf",
+        },
+        {
+            order:12,
+            name:"أسئلة الفصل التاني سكشن 2",
+            title:"أسئلة الفصل التاني سكشن 2",
+            filePath:"pdfs/2.pdf",
+        },
     ]
 };
 
