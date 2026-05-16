@@ -4,82 +4,191 @@ const lectureData = {
 
   // ═══ شرح المحاضرة (النظري ثم العملي) ═══
   content: `
-            <style>
-                .lec-content li {
-                    margin-bottom: 12px;
-                    line-height: 1.7;
-                    text-align: justify;
-                }
-                .lec-content li strong:first-child {
-                    display: inline;
-                }
-                .lec-content ul, .lec-content ol {
-                    padding-right: 18px;
-                    margin-bottom: 15px;
-                }
-                .lec-content p {
-                    line-height: 1.7;
-                    margin-bottom: 12px;
-                    text-align: justify;
-                }
-                .lec-content h2 {
-                    margin-top: 25px;
-                    margin-bottom: 15px;
-                    font-size: 1.3em;
-                }
-                .lec-content h3 {
-                    margin-top: 20px;
-                    margin-bottom: 12px;
-                    font-size: 1.1em;
-                }
-                .lec-content h4 {
-                    margin-top: 15px;
-                    margin-bottom: 10px;
-                    font-size: 1em;
-                }
-                .lec-content .box {
-                    margin-bottom: 15px;
-                    padding: 15px;
-                }
-                .lec-content .highlight {
-                    background-color: #f0f8ff;
-                    border-right: 4px solid #2196F3;
-                    padding: 10px 15px;
-                    margin: 10px 0;
-                }
-                .lec-content .insight {
-                    background-color: #141414;
-                    border-right: 4px solid #045a46;
-                    padding: 10px 15px;
-                    margin: 10px 0;
-                    font-style: italic;
-                }
-                .tree-img {
-                    display: flex;
-                    justify-content: center;
-                    margin: 20px 0;
-                }
-                .tree-img img {
-                    max-width: 100%;
-                    height: auto;
-                    border-radius: 12px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                }
-                table {
-                    border-collapse: collapse;
-                    width: 100%;
-                    margin: 15px 0;
-                }
-                th, td {
-                    border: 1px solid #ccc;
-                    padding: 8px;
-                    text-align: center;
-                }
-                th {
-                    background-color: #2196F3;
-                    color: white;
-                }
-            </style>
+           <style>
+    .lec-content li {
+        margin-bottom: 12px;
+        line-height: 1.7;
+        text-align: justify;
+    }
+    .lec-content li strong:first-child {
+        display: inline;
+    }
+    .lec-content ul, .lec-content ol {
+        padding-right: 18px;
+        margin-bottom: 15px;
+    }
+    .lec-content p {
+        line-height: 1.7;
+        margin-bottom: 12px;
+        text-align: justify;
+    }
+    .lec-content h2 {
+        margin-top: 25px;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+    .lec-content h3 {
+        margin-top: 20px;
+        margin-bottom: 12px;
+        font-size: 1.1em;
+    }
+    .lec-content h4 {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        font-size: 1em;
+    }
+    .lec-content .box {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+    .lec-content .highlight {
+        background-color: #f0f8ff;
+        border-right: 4px solid #2196F3;
+        padding: 10px 15px;
+        margin: 10px 0;
+    }
+    .lec-content .insight {
+        background-color: #141414;
+        border-right: 4px solid #045a46;
+        padding: 10px 15px;
+        margin: 10px 0;
+        font-style: italic;
+    }
+    .tree-img {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    .tree-img img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    /* ═══ تنسيق الجداول المُحسَّن ═══ */
+    .lec-content table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 15px 0;
+        font-size: 0.95em;
+        direction: rtl;
+    }
+    .lec-content th, 
+    .lec-content td {
+        border: 1px solid #444;
+        padding: 10px 8px;
+        text-align: center;
+        white-space: nowrap;
+        min-width: 80px;
+    }
+    .lec-content th {
+        background-color: #2196F3;
+        color: white;
+        font-weight: 600;
+        font-size: 0.9em;
+    }
+    .lec-content td {
+        background-color: #1a1a1a;
+    }
+    .lec-content tr:nth-child(even) td {
+        background-color: #222;
+    }
+    
+    /* ═══ تصميم الكروت للموبايل ═══ */
+    .mobile-cards {
+        display: none;
+    }
+    .data-card {
+        background: #1a2332;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        border: 1px solid #2a3a4a;
+    }
+    .data-card-header {
+        background: #2196F3;
+        color: white;
+        text-align: center;
+        padding: 12px;
+        font-size: 1.1em;
+        font-weight: 600;
+    }
+    .data-card-row {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a3a4a;
+    }
+    .data-card-row:last-child {
+        border-bottom: none;
+    }
+    .data-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 12px;
+        font-size: 1.1em;
+        flex-shrink: 0;
+        background: #1e3a4f;
+    }
+    .data-label {
+        flex: 1;
+        color: #ccc;
+        font-size: 0.9em;
+    }
+    .data-value {
+        color: white;
+        font-size: 1.1em;
+        font-weight: 600;
+        font-family: 'Courier New', monospace;
+    }
+    .card-total {
+        background: #2196F3;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 16px;
+        font-weight: 600;
+    }
+    .card-subtotal {
+        background: #1a2332;
+        border-radius: 16px;
+        margin-top: 15px;
+        overflow: hidden;
+        border: 1px solid #2a3a4a;
+    }
+    .card-subtotal-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 16px;
+        color: white;
+    }
+
+    /* Responsive للموبايل */
+    @media (max-width: 768px) {
+        .desktop-table {
+            display: none;
+        }
+        .mobile-cards {
+            display: block;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .lec-content table:not(.desktop-table) {
+            font-size: 0.8em;
+        }
+        .lec-content th:not(.desktop-table th), 
+        .lec-content td:not(.desktop-table td) {
+            padding: 8px 4px;
+            min-width: 60px;
+        }
+    }
+</style>
 
 <div class="box video-box">
                 <h2>🎬 فيديو تعليمي: شرح الاحتمالات - كلية تجارة جامعة حلوان</h2>
@@ -443,8 +552,7 @@ const lectureData = {
                 <p><strong>خاصية مهمة:</strong> P(B|A) + P(~B|A) = 1</p>
             </div>
 
-
-              <div class="box">
+<div class="box">
                 <h2>🧮 نظرية بييز (Bayes Theorem)</h2>
                 <p>العالم الإنجليزي "توماس بييز" عمل أسلوب مبتكر لحل المشاكل اللي بنحتاج فيها نرجع بظهرنا لورا (نعرف السبب لما نشوف النتيجة).</p>
                 
@@ -461,7 +569,9 @@ const lectureData = {
                 = 0.0035 / 0.0065 = 0.54 = 54%</p>
                 
                 <h3>طريقة الجدول (أسهل حاجة 🎯)</h3>
-                <table>
+                
+                <!-- الجدول العادي (للكمبيوتر والتابلت) -->
+                <table class="desktop-table">
                     <tr style="background-color: #2196F3; color: white;">
                         <th>الحدث</th><th>الاحتمال القبلي P(A)</th><th>الاحتمال الشرطي P(D|A)</th><th>الاحتمال المشترك</th><th>الاحتمال البعدي</th>
                     </tr>
@@ -472,6 +582,30 @@ const lectureData = {
                     <tr><td style="text-align: center;"><strong>المجموع</strong></td><td style="text-align: center;">1.00</td><td style="text-align: center;"></td><td style="text-align: center;">0.0065</td><td style="text-align: center;">1.00</td>
                     </tr>
                 </table>
+
+                <!-- كروت طريقة الجدول (للموبايل) -->
+                <div class="mobile-cards">
+                    <div class="data-card">
+                        <div class="data-card-header">الحدث X</div>
+                        <div class="data-card-row"><div class="data-icon">⚙️</div><div class="data-label">الاحتمال القبلي P(A)</div><div class="data-value">0.70</div></div>
+                        <div class="data-card-row"><div class="data-icon">⊟</div><div class="data-label">الاحتمال الشرطي P(D|A)</div><div class="data-value">0.005</div></div>
+                        <div class="data-card-row"><div class="data-icon">⊟⊟</div><div class="data-label">الاحتمال المشترك</div><div class="data-value">0.0035</div></div>
+                        <div class="data-card-row"><div class="data-icon">÷</div><div class="data-label">الاحتمال البعدي</div><div class="data-value">0.54</div></div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-card-header">الحدث Y</div>
+                        <div class="data-card-row"><div class="data-icon">⚙️</div><div class="data-label">الاحتمال القبلي P(A)</div><div class="data-value">0.30</div></div>
+                        <div class="data-card-row"><div class="data-icon">⊟</div><div class="data-label">الاحتمال الشرطي P(D|A)</div><div class="data-value">0.010</div></div>
+                        <div class="data-card-row"><div class="data-icon">⊟⊟</div><div class="data-label">الاحتمال المشترك</div><div class="data-value">0.0030</div></div>
+                        <div class="data-card-row"><div class="data-icon">÷</div><div class="data-label">الاحتمال البعدي</div><div class="data-value">0.46</div></div>
+                    </div>
+
+                    <div class="card-subtotal">
+                        <div class="card-total"><span>المجموع</span><span class="data-value">1.00</span></div>
+                        <div class="card-subtotal-row"><span>الاحتمال المشترك الكلي</span><span class="data-value">0.0065</span></div>
+                    </div>
+                </div>
                 
                 <div class="insight">💡 تريكة: أول ما تلمحي مسألة فيها نسب إنتاج لشركات (أو مصانع) وفيها نسبة تالف أو عيوب، ويطلب منكِ احتمال إن الجهاز التالف ده من الشركة الأولى → اعملي الجدول المكون من 5 أعمدة علطول؛ اضربي النسب في بعض، واجمعي النواتج، واقسمي جزء الشركة الأولى على المجموع الكلي، هتطير معاكي المسألة في ثواني!</div>
             </div>
@@ -506,19 +640,46 @@ const lectureData = {
 <div class="box">
                 <h2>💡 مثال مصنع اللمبات الكهربائية (أربع شركات)</h2>
                 <p>مصنع بيشتري لمبات كهربائية من 4 شركات توردية مختلفة، والجدول مديكِ نسب التوريد ونسب اللمبات المعيبة (البايظة) كالتالي:</p>
-                <table>
+                
+                <!-- الجدول العادي (للكمبيوتر والتابلت) -->
+                <table class="desktop-table">
                     <tr style="background-color: #2196F3; color: white;">
-                        <th>الشركة الموردة</th><th>نسبة ما تقوم بتوريده P(A_i)</th><th>نسبة المعيب (البايظ) P(W|A_i)</th>
+                        <th>الشركة الموردة</th><th>نسبة التوريد P(A)</th><th>نسبة المعيب P(W|A)</th>
                     </tr>
-                    <tr><td style="text-align: center;">الشركة الأولى (A₁)</td><td style="text-align: center;">30% (0.30)</td><td style="text-align: center;">2% (0.02)</td>
+                    <tr><td style="text-align: center;">A₁</td><td style="text-align: center;">30% (0.30)</td><td style="text-align: center;">2% (0.02)</td>
                     </tr>
-                    <tr><td style="text-align: center;">الشركة الثانية (A₂)</td><td style="text-align: center;">40% (0.40)</td><td style="text-align: center;">3% (0.03)</td>
+                    <tr><td style="text-align: center;">A₂</td><td style="text-align: center;">40% (0.40)</td><td style="text-align: center;">3% (0.03)</td>
                     </tr>
-                    <tr><td style="text-align: center;">الشركة الثالثة (A₃)</td><td style="text-align: center;">10% (0.10)</td><td style="text-align: center;">1% (0.01)</td>
+                    <tr><td style="text-align: center;">A₃</td><td style="text-align: center;">10% (0.10)</td><td style="text-align: center;">1% (0.01)</td>
                     </tr>
-                    <tr><td style="text-align: center;">الشركة الرابعة (A₄)</td><td style="text-align: center;">20% (0.20)</td><td style="text-align: center;">2% (0.02)</td>
+                    <tr><td style="text-align: center;">A₄</td><td style="text-align: center;">20% (0.20)</td><td style="text-align: center;">2% (0.02)</td>
                     </tr>
                 </table>
+
+                <!-- كروت للموبايل -->
+                <div class="mobile-cards">
+                    <div class="data-card">
+                        <div class="data-card-header">الشركة A₁</div>
+                        <div class="data-card-row"><div class="data-icon">📦</div><div class="data-label">نسبة التوريد P(A)</div><div class="data-value">30% (0.30)</div></div>
+                        <div class="data-card-row"><div class="data-icon">⚠️</div><div class="data-label">نسبة المعيب P(W|A)</div><div class="data-value">2% (0.02)</div></div>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-card-header">الشركة A₂</div>
+                        <div class="data-card-row"><div class="data-icon">📦</div><div class="data-label">نسبة التوريد P(A)</div><div class="data-value">40% (0.40)</div></div>
+                        <div class="data-card-row"><div class="data-icon">⚠️</div><div class="data-label">نسبة المعيب P(W|A)</div><div class="data-value">3% (0.03)</div></div>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-card-header">الشركة A₃</div>
+                        <div class="data-card-row"><div class="data-icon">📦</div><div class="data-label">نسبة التوريد P(A)</div><div class="data-value">10% (0.10)</div></div>
+                        <div class="data-card-row"><div class="data-icon">⚠️</div><div class="data-label">نسبة المعيب P(W|A)</div><div class="data-value">1% (0.01)</div></div>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-card-header">الشركة A₄</div>
+                        <div class="data-card-row"><div class="data-icon">📦</div><div class="data-label">نسبة التوريد P(A)</div><div class="data-value">20% (0.20)</div></div>
+                        <div class="data-card-row"><div class="data-icon">⚠️</div><div class="data-label">نسبة المعيب P(W|A)</div><div class="data-value">2% (0.02)</div></div>
+                    </div>
+                </div>
+                
                 <p><strong>المطلوب 🎯:</strong> سحبنا لمبة عشوائياً ولقيناها بايظة (W). إيه احتمال إنها تكون من إنتاج الشركة الثالثة (A₃)؟ يعني عايزين: P(A₃|W).</p>
                 
                 <p><strong>التعويض والحل:</strong><br>
@@ -590,13 +751,26 @@ const lectureData = {
                 - احتمال ظهور صورتين f(2): مفيش غير حالة واحدة (HH) من أصل 4 → الاحتمال = 1/4</p>
                 
                 <p><strong>جدول التوزيع الاحتمالي النهائي:</strong></p>
-                <table>
+                
+                <!-- جدول عادي -->
+                <table class="desktop-table">
                     <tr style="background-color: #2196F3; color: white;">
                         <th>x</th><th>0</th><th>1</th><th>2</th><th>المجموع</th>
                     </tr>
-                    <tr><td style="text-align: center;">f(x)</td><td style="text-align: center;">1/4</td><td style="text-align: center;">2/4 = 1/2</td><td style="text-align: center;">1/4</td><td style="text-align: center;">1</td>
+                    <tr><td style="text-align: center;">f(x)</th><td style="text-align: center;">1/4</th><td style="text-align: center;">2/4 = 1/2</th><td style="text-align: center;">1/4</th><td style="text-align: center;">1</th>
                     </tr>
                 </table>
+
+                <!-- كروت للموبايل -->
+                <div class="mobile-cards">
+                    <div class="data-card">
+                        <div class="data-card-header">توزيع الاحتمالات</div>
+                        <div class="data-card-row"><div class="data-icon">🔢</div><div class="data-label">P(X=0)</div><div class="data-value">1/4</div></div>
+                        <div class="data-card-row"><div class="data-icon">🔢</div><div class="data-label">P(X=1)</div><div class="data-value">2/4 = 1/2</div></div>
+                        <div class="data-card-row"><div class="data-icon">🔢</div><div class="data-label">P(X=2)</div><div class="data-value">1/4</div></div>
+                        <div class="card-total"><span>المجموع</span><span class="data-value">1</span></div>
+                    </div>
+                </div>
                 <p>(تأكدنا إن المجموع طلع 1 صحيح، يبقى حلنا مظبوط جداً).</p>
             </div>
 
@@ -626,140 +800,35 @@ const lectureData = {
   // ═══ الامتحان (أسئلة صواب أو خطأ واختيار من متعدد فقط) ═══
   exam: {
     trueFalse: [
-      {
-        question:
-          "قيمة الاحتمال لأي حدث يمكن أن تكون سالبة إذا كان الحدث مستحيلاً تماماً.",
-        answer: "false",
-      },
-      {
-        question:
-          "الأحداث المتنافية هي الأحداث التي يستحيل وقوعها معاً في نفس اللحظة.",
-        answer: "true",
-      },
-      {
-        question:
-          "في الأحداث المستقلة، وقوع أحد الأحداث لا يؤثر إطلاقاً على احتمال وقوع الأحداث الأخرى.",
-        answer: "true",
-      },
-      {
-        question:
-          "يعتمد الاحتمال الذاتي (Subjective) على التكرار النسبي للمشاهدات في التجارب المعملية.",
-        answer: "false",
-      },
-      {
-        question:
-          "في الشجرة البيانية، يجب أن يكون مجموع الاحتمالات على الفروع الخارجة من نقطة واحدة مساوياً للواحد الصحيح.",
-        answer: "true",
-      },
-      {
-        question:
-          "تُستخدم نظرية بييز لتعديل 'الاحتمال القبلي' والحصول على 'احتمال بعدي' عند توفر معلومة جديدة.",
-        answer: "true",
-      },
-      {
-        question:
-          "المتغير العشوائي المنفصل (Discrete) هو الذي يأخذ أي قيمة داخل نطاق أو مدى معين كالأوزان.",
-        answer: "false",
-      },
-      {
-        question:
-          "القيمة المتوقعة (Expected Value) للمتغير العشوائي تعبر عن المتوسط الحسابي المرجح لقيمه.",
-        answer: "true",
-      },
-      {
-        question:
-          "الاحتمال المشترك لحدثين مستقلين يحسب بجمع احتمالاتهما الفردية.",
-        answer: "false",
-      },
-      {
-        question:
-          "الاحتمال الشرطي P(B∣A) يعني احتمال وقوع الحدث B بشرط أن يكون الحدث A قد وقع بالفعل.",
-        answer: "true",
-      },
+      { question: "قيمة الاحتمال لأي حدث يمكن أن تكون سالبة إذا كان الحدث مستحيلاً تماماً.", answer: "false" },
+      { question: "الأحداث المتنافية هي الأحداث التي يستحيل وقوعها معاً في نفس اللحظة.", answer: "true" },
+      { question: "في الأحداث المستقلة، وقوع أحد الأحداث لا يؤثر إطلاقاً على احتمال وقوع الأحداث الأخرى.", answer: "true" },
+      { question: "يعتمد الاحتمال الذاتي (Subjective) على التكرار النسبي للمشاهدات في التجارب المعملية.", answer: "false" },
+      { question: "في الشجرة البيانية، يجب أن يكون مجموع الاحتمالات على الفروع الخارجة من نقطة واحدة مساوياً للواحد الصحيح.", answer: "true" },
+      { question: "تُستخدم نظرية بييز لتعديل 'الاحتمال القبلي' والحصول على 'احتمال بعدي' عند توفر معلومة جديدة.", answer: "true" },
+      { question: "المتغير العشوائي المنفصل (Discrete) هو الذي يأخذ أي قيمة داخل نطاق أو مدى معين كالأوزان.", answer: "false" },
+      { question: "القيمة المتوقعة (Expected Value) للمتغير العشوائي تعبر عن المتوسط الحسابي المرجح لقيمه.", answer: "true" },
+      { question: "الاحتمال المشترك لحدثين مستقلين يحسب بجمع احتمالاتهما الفردية.", answer: "false" },
+      { question: "الاحتمال الشرطي P(B∣A) يعني احتمال وقوع الحدث B بشرط أن يكون الحدث A قد وقع بالفعل.", answer: "true" },
     ],
 
     multipleChoice: [
-      {
-        question: "ما هو احتمال وقوع 'الحدث المؤكد'؟",
-        options: ["0", "1 (أو 100%)", "0.5", "لا يمكن تحديده"],
-        correctIndex: "1",
-      },
-      {
-        question: "عند حساب احتمال وقوع الحدث A أو الحدث B، نستخدم قاعدة:",
-        options: ["الضرب", "الجمع (Sum Rule)", "القسمة", "بييز"],
-        correctIndex: "1",
-      },
-      {
-        question:
-          "إذا كان P(A)=0.5 و P(B)=0.3 والحدثان مستقلان، فإن الاحتمال المشترك P(A∩B) هو:",
-        options: ["0.8", "0.2", "0.15", "1.6"],
-        correctIndex: "2",
-      },
-      {
-        question: "أي من التالي يعتبر مثالاً لمتغير عشوائي منفصل؟",
-        options: [
-          "درجة الحرارة",
-          "عدد أفراد الأسرة",
-          "ضغط الدم",
-          "المسافة بين مدينتين",
-        ],
-        correctIndex: "1",
-      },
-      {
-        question: "مقياس تشتت قيم المتغير العشوائي حول متوسطه يسمى:",
-        options: [
-          "القيمة المتوقعة",
-          "التباين (Variance)",
-          "الاحتمال الحدي",
-          "التكرار النسبي",
-        ],
-        correctIndex: "1",
-      },
-      {
-        question:
-          "من رواد علم الاحتمالات الذين ساهموا في وضع مسلماته في العشرينات والثلاثينات:",
-        options: ["نيوتن", "كولموجروف (Kolmogorov)", "فيثاغورث", "أرسطو"],
-        correctIndex: "1",
-      },
-      {
-        question: "تُعرف مجموعة كل النواتج الممكنة للتجربة الاحتمالية باسم:",
-        options: [
-          "الحدث",
-          "المجموعة الشاملة (Universal Set)",
-          "الاحتمال الشرطي",
-          "المتغير المتصل",
-        ],
-        correctIndex: "1",
-      },
-      {
-        question:
-          "إذا كان وقوع الحدث الأول يغير من احتمال وقوع الحدث الثاني، فإنهما يوصفان بأنهما:",
-        options: ["مستقلان", "غير مستقلين (Dependent)", "متنافيان", "شاملان"],
-        correctIndex: "1",
-      },
-      {
-        question: "في تجربة رمي نرد، احتمال ظهور رقم زوجي هو:",
-        options: ["1/6", "3/6 (أو 0.5)", "1/2", "2/3"],
-        correctIndex: "1",
-      },
-      {
-        question:
-          "يُسمى الاحتمال المتاح قبل الحصول على معلومة إضافية في قاعدة بييز بـ:",
-        options: [
-          "الاحتمال البعدي",
-          "الاحتمال القبلي (Prior)",
-          "الاحتمال المشترك",
-          "الاحتمال الشرطي",
-        ],
-        correctIndex: "1",
-      },
+      { question: "ما هو احتمال وقوع 'الحدث المؤكد'؟", options: ["0", "1 (أو 100%)", "0.5", "لا يمكن تحديده"], correctIndex: "1" },
+      { question: "عند حساب احتمال وقوع الحدث A أو الحدث B، نستخدم قاعدة:", options: ["الضرب", "الجمع (Sum Rule)", "القسمة", "بييز"], correctIndex: "1" },
+      { question: "إذا كان P(A)=0.5 و P(B)=0.3 والحدثان مستقلان، فإن الاحتمال المشترك P(A∩B) هو:", options: ["0.8", "0.2", "0.15", "1.6"], correctIndex: "2" },
+      { question: "أي من التالي يعتبر مثالاً لمتغير عشوائي منفصل؟", options: ["درجة الحرارة", "عدد أفراد الأسرة", "ضغط الدم", "المسافة بين مدينتين"], correctIndex: "1" },
+      { question: "مقياس تشتت قيم المتغير العشوائي حول متوسطه يسمى:", options: ["القيمة المتوقعة", "التباين (Variance)", "الاحتمال الحدي", "التكرار النسبي"], correctIndex: "1" },
+      { question: "من رواد علم الاحتمالات الذين ساهموا في وضع مسلماته في العشرينات والثلاثينات:", options: ["نيوتن", "كولموجروف (Kolmogorov)", "فيثاغورث", "أرسطو"], correctIndex: "1" },
+      { question: "تُعرف مجموعة كل النواتج الممكنة للتجربة الاحتمالية باسم:", options: ["الحدث", "المجموعة الشاملة (Universal Set)", "الاحتمال الشرطي", "المتغير المتصل"], correctIndex: "1" },
+      { question: "إذا كان وقوع الحدث الأول يغير من احتمال وقوع الحدث الثاني، فإنهما يوصفان بأنهما:", options: ["مستقلان", "غير مستقلين (Dependent)", "متنافيان", "شاملان"], correctIndex: "1" },
+      { question: "في تجربة رمي نرد، احتمال ظهور رقم زوجي هو:", options: ["1/6", "3/6 (أو 0.5)", "1/2", "2/3"], correctIndex: "1" },
+      { question: "يُسمى الاحتمال المتاح قبل الحصول على معلومة إضافية في قاعدة بييز بـ:", options: ["الاحتمال البعدي", "الاحتمال القبلي (Prior)", "الاحتمال المشترك", "الاحتمال الشرطي"], correctIndex: "1" },
     ],
 
     essay: [],
   },
 };
 
-// Export for module usage
 if (typeof module !== "undefined" && module.exports) {
   module.exports = lectureData;
 }
