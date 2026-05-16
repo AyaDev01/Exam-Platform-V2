@@ -78,11 +78,11 @@ const lecturesIndex = {
       },
     
       basmaga_one: {
-        title: "📝 بصمجة - أسئلة محلولة",
+        title: "📝 اسئلة محلولة صح وغلط",
         file: "lectures/basmaga_one.js",
       },
       basmaga_two: {
-        title: "📝 بصمجة - أسئلة محلولة",
+        title: "📝  أسئلة محلولة اختياري",
         file: "lectures/basmaga_two.js",
       },
      
