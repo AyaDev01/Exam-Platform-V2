@@ -18,13 +18,13 @@ const lecturesIndex = {
         title: "المحاضرة الثالثة: تحليل وتوصيف الوظائف",
         file: "lectures/hr_lec3.js",
       },
-      hr_lec4:{
-        title:"المحاضرة الرابعة: تخطيط الموارد البشرية",
-        file:"lectures/hr_lec4.js",
+      hr_lec4: {
+        title: "المحاضرة الرابعة: تخطيط الموارد البشرية",
+        file: "lectures/hr_lec4.js",
       },
-      hr_lec5:{
-        title:"المحاضرة الخامسة: الاستقطاب والتوظيف",
-        file:"lectures/hr_lec5.js",
+      hr_lec5: {
+        title: "المحاضرة الخامسة: الاستقطاب والتوظيف",
+        file: "lectures/hr_lec5.js",
       },
       hr_sec1: {
         title: "سكشن  1 - تاريخ إدارة الموارد البشرية",
@@ -38,14 +38,30 @@ const lecturesIndex = {
         title: "سكشن  3 - تحليل الوظائف والخرائط التنظيمية",
         file: "lectures/hr_sec3.js",
       },
-       hr_sec4:{
-        title:"سكشن  4 - تخطيط الموارد البشرية",
-        file:"lectures/hr_sec4.js",
-       },
-       hr_sec5:{
-        title:"السكشن 5: الاستقطاب والتوظيف",
-        file:"lectures/hr_sec5.js",
-       },
+      hr_sec4: {
+        title: "سكشن  4 - تخطيط الموارد البشرية",
+        file: "lectures/hr_sec4.js",
+      },
+      hr_sec5: {
+        title: "السكشن 5: الاستقطاب والتوظيف",
+        file: "lectures/hr_sec5.js",
+      },
+      hr_lec6: {
+        title: "📖 المحاضرة 6: التدريب وتنمية المهارات",
+        file: "lectures/hr_lec6.js",
+      },
+      hr_lec7: {
+        title: "📖 المحاضرة 7: الحوافز والأجور",
+        file: "lectures/hr_lec7.js",
+      },
+      hr_lec8: {
+        title: "📖 المحاضرة 8: اليقظة الاجتماعية وإدارة النزاعات",
+        file: "lectures/hr_lec8.js",
+      },
+      hr_lec9: {
+        title: "المحاضرة 9: القيادة (Leadership)",
+        file: "lectures/hr_lec9.js",
+      },
       hr_sources: {
         title: "📚 المصادر والمراجع (PDF)",
         file: "lectures/hr_sources.js",
@@ -76,7 +92,7 @@ const lecturesIndex = {
         title: "المحاضرة السادسة: قائمة الدخل الشامل والقوائم المالية",
         file: "lectures/comp_lec5.js",
       },
-    
+
       basmaga_one: {
         title: "📝 اسئلة محلولة صح وغلط",
         file: "lectures/basmaga_one.js",
@@ -85,8 +101,8 @@ const lecturesIndex = {
         title: "📝  أسئلة محلولة اختياري",
         file: "lectures/basmaga_two.js",
       },
-     
-    com_sources: {
+
+      com_sources: {
         title: "📚 المصادر والمراجع (PDF)",
         file: "lectures/com.sources.js",
       },
@@ -105,7 +121,36 @@ const lecturesIndex = {
           "📊 المحاضرة 2: المتغيرات العشوائية المنفصلة والتوزيعات الاحتمالية",
         file: "lectures/stats_lec2.js",
       },
+      stas_sec2: {
+        title: "شرح توزيع ذو الحدين - عائلة 6 أطفال | السيكشن (٢)",
+        file: "lectures/stas_sec2.js",
+      },
     },
+  },
+  erp: {
+  name :"نظم المعلومات المحاسبية",
+  lectures:{
+    erp_lec1:{
+      title: "اسئلة محلولة لمحاضرة ERP - صح وغلط",
+      file:"lectures/erp.lec1.js",
+    },
+    erp_lec2:{
+       title: "اسئلة محلولة لمحاضرة ERP - اختيار من متعدد",
+       file:"lectures/erp_lec2.js",
+    },
+    erp_lec3:{
+       title: "الجزء العملي",
+       file:"lectures/erp_lec3.js",
+    },
+    erp_lec4:{
+       title: "  اسئلة الجزء العملي محلولة",
+       file:"lectures/erp_lec4.js",
+    },
+    erp_sources:{
+      title: "📚 مصادر ومراجع نظم المعلومات المحاسبية",
+      file:"lectures/erp_sources.js",
+    },
+  },
   },
 };
 
