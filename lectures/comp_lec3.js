@@ -1,17 +1,7 @@
 // comp_lec3.js
 const lectureData = {
 
- theme: {
- primary: "#093bdd",
- primaryLight: "#6495ED",
- primaryDark: "#1b4f8f",
- gradient: "linear-gradient(135deg, #1b232b 0%, #093bdd 100%)",
- bgGradient:
- "linear-gradient(135deg, rgba(9,59,221,0.08) 0%, rgba(100,149,237,0.08) 100%)",
- borderColor: "rgba(9,59,221,0.3)",
- boxBg:
- "linear-gradient(135deg, rgba(9,59,221,0.06) 0%, rgba(255,255,255,0.9) 100%)",
- },
+
  title: "المحاضرة الرابعة: كيفية تقييم الشركات من خلال تقرير الحوكمة",
 
  content: `

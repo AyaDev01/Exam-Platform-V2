@@ -125,6 +125,30 @@ const lecturesIndex = {
         title: "شرح توزيع ذو الحدين - عائلة 6 أطفال | السيكشن (٢)",
         file: "lectures/stas_sec2.js",
       },
+      stas_sec3:{
+        title:"📊 شرح مبسط: توزيع بواسون (Poisson Distribution) - مثال الحوادث المرورية",
+        file:"lectures/stas_sec3.js",
+      },
+      stas_sec4: {
+         title: "📊 شرح مبسط: التوزيع الطبيعي (Normal Distribution) - مثال درجات الطلاب",
+        file: "lectures/stas_sec4.js",
+      },
+      stas_sec5:{
+        title: "📊 شرح مبسط: التوزيع الطبيعي (Normal Distribution) - مثال درجات الطلاب (متوسط 56، تباين 16)",
+        file:"lectures/stas_sec5.js",
+      },
+      stas_sec6:{
+        title: "📊 شرح مبسط: التقديرات الإحصائية (Statistical Estimation) - فترة الثقة لمتوسط المجتمع",
+        file:"lectures/stas_sec6.js",
+      },
+      stas_sec7:{
+        title:"سشكن 7",
+        file:"lectures/stas_sec7.js",
+      },
+      stas_sources:{
+        title:"مصادر ومراجع مقرر الاحصاء",
+        file:"lectures/stas_sources.js",
+      },
     },
   },
   erp: {
@@ -143,8 +167,12 @@ const lecturesIndex = {
        file:"lectures/erp_lec3.js",
     },
     erp_lec4:{
-       title: "  اسئلة الجزء العملي محلولة",
+       title:"اسئلة محلولة لمحاضرة ERP - اختيار من متعدد",
        file:"lectures/erp_lec4.js",
+    },
+    erp_lec5:{
+      title:"اسئلة محلولة لمحاضرة ERP - صح وغلط",
+      file:"lectures/erp_lec5.js",
     },
     erp_sources:{
       title: "📚 مصادر ومراجع نظم المعلومات المحاسبية",
