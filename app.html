@@ -980,6 +980,134 @@
           padding: 6px 15px;
         }
       }
+      /* زر الشات العائم */
+.chat-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  transition: transform 0.2s;
+}
+.chat-toggle-btn:hover { transform: scale(1.05); }
+
+/* حاوية الشات الرئيسية */
+.chat-container {
+  position: fixed;
+  bottom: 80px;
+  left: 20px;
+  width: 360px;
+  height: 480px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  overflow: hidden;
+  font-family: inherit;
+  direction: rtl; /* اتجاه عربي */
+}
+.chat-container.hidden { display: none; }
+
+/* الهيدر */
+.chat-header {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bot-info { display: flex; align-items: center; gap: 8px; }
+.bot-status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #28a745;
+  border-radius: 50%;
+}
+.chat-close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+/* منطقة الرسائل */
+.chat-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #fafafa;
+}
+.message {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.message.bot {
+  background-color: #ffffff;
+  align-self: flex-start;
+  border: 1px solid #eef0f2;
+  color: #333;
+}
+.message.user {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
+}
+.message.loading {
+  background-color: #eee;
+  color: #666;
+  font-style: italic;
+  align-self: flex-start;
+}
+
+/* الفوتر ومكان الكتابة */
+.chat-footer {
+  padding: 10px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 8px;
+  background-color: #fff;
+}
+.chat-footer input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+}
+.chat-footer button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chat-footer button:hover { background-color: #0056b3; }
    </style>
     <base target="_blank" />
   </head>
@@ -1070,7 +1198,32 @@
         <button class="close-result-btn" onclick="closeResult()">إغلاق</button>
       </div>
     </div>
+<button id="chat-toggle-btn" class="chat-toggle-btn">
+  🤖 <span>المساعد بتاعي</span>
+</button>
 
+<div id="chat-container" class="chat-container hidden">
+  <div class="chat-header">
+    <div class="bot-info">
+      <span class="bot-status-dot"></span>
+      <strong style="font-size: 16px;">المساعد بتاعي 🤖</strong>
+    </div>
+    <button id="chat-close-btn" class="chat-close-btn">&times;</button>
+  </div>
+
+  <div id="chat-messages" class="chat-messages">
+    <div class="message bot">
+      أهلاً بك يا فنان! أنا  المساعد الذكي بتاعك.. اسألني في أي حاجة واقفة معاك في المحاضرات وهظبطك! 😉
+    </div>
+  </div>
+
+  <div class="chat-footer">
+    <input type="text" id="chat-input" placeholder="اكتب سؤالك هنا يا صديق." />
+    <button id="chat-send-btn">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
     <script src="data.js"></script>
     <script>
       let currentSubject = null;
@@ -1750,6 +1903,87 @@
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape") {
           closePDF();
+        }
+      });
+      // 🤖 كود تشغيل شات المساعد وإرسال الرسائل للباك آند
+      document.addEventListener('DOMContentLoaded', () => {
+        const chatToggleBtn = document.getElementById('chat-toggle-btn');
+        const chatContainer = document.getElementById('chat-container');
+        const chatCloseBtn = document.getElementById('chat-close-btn');
+        const chatSendBtn = document.getElementById('chat-send-btn');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        if(chatToggleBtn) {
+          chatToggleBtn.addEventListener('click', () => chatContainer.classList.toggle('hidden'));
+        }
+        if(chatCloseBtn) {
+          chatCloseBtn.addEventListener('click', () => chatContainer.classList.add('hidden'));
+        }
+
+   async function sendMessage() {
+  const questionText = chatInput.value.trim();
+  if (!questionText) return;
+
+  appendMessage(questionText, 'user');
+  chatInput.value = '';
+
+  const loadingMessage = appendMessage('البصمجي بيفكر... 🤔', 'loading');
+
+  try {
+    const response = await fetch('http://localhost:3000/api/ai/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ 
+        question: questionText,
+        subjectKey: currentSubject || null,  // <-- دي موجودة عندك
+        lectureKey: currentLecture || null   // <-- ودي كمان
+      })
+    });
+
+    const data = await response.json();
+    loadingMessage.remove();
+
+    if (data.success) {
+      // نضيف مصدر الإجابة لو موجود
+      const sourceInfo = data.source && data.source !== 'معلومات عامة' 
+        ? `\n\n📚 المصدر: ${data.source}` 
+        : '';
+      appendMessage(data.answer + sourceInfo, 'bot');
+    } else {
+      appendMessage('⚠️ ' + data.message, 'bot');
+    }
+  } catch (error) {
+    loadingMessage.remove();
+    appendMessage('⚠️ السيرفر نايم! جربي تاني.', 'bot');
+    console.error('Error:', error);
+  }
+}
+        function appendMessage(text, type) {
+          const msgDiv = document.createElement('div');
+          msgDiv.classList.add('message', type);
+          
+          // تنسيق أفضل لرسائل البوت - احفظ السطور والتنسيق
+          if (type === 'bot') {
+            msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/  /g, '&nbsp;&nbsp;');
+            msgDiv.style.whiteSpace = 'pre-wrap';
+            msgDiv.style.wordWrap = 'break-word';
+          } else {
+            msgDiv.innerText = text;
+          }
+          
+          chatMessages.appendChild(msgDiv);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          return msgDiv;
+        }
+
+        if(chatSendBtn) chatSendBtn.addEventListener('click', sendMessage);
+        if(chatInput) {
+          chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+          });
         }
       });
     </script>
