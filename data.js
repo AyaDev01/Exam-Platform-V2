@@ -62,6 +62,10 @@ const lecturesIndex = {
         title: "المحاضرة 9: القيادة (Leadership)",
         file: "lectures/hr_lec9.js",
       },
+      hr_essay:{
+        title:"مقالي مادة الموارد البشرية",
+        file:"lectures/essay.js",
+      },
       hr_sources: {
         title: "📚 المصادر والمراجع (PDF)",
         file: "lectures/hr_sources.js",
@@ -112,10 +116,20 @@ const lecturesIndex = {
   stats: {
     name: "📊 مبادئ الإحصاء",
     lectures: {
-      stats_lec1: {
-        title: "📊 المحاضرة 1: مقدمة في الاحتمالات",
-        file: "lectures/stats_lec1.js",
+      stats_lec1_part1: {
+        title: "📊 المحاضرة 1 الجزء الاول: مقدمة في الاحتمالات",
+        file: "lectures/stats_lec1_part1.js",
       },
+       stats_lec1_part2:{
+         title: "📊 المحاضرة 1 الجزء الثاني: مقدمة في الاحتمالات",
+        file: "lectures/stats_lec1_part2.js",
+       },
+       stats_lec1_part3:{
+         title: "📊 المحاضرة 1 الجزء الثالث : مقدمة في الاحتمالات",
+        file: "lectures/stats_lec1_part3.js",
+       },
+      
+
       stats_lec2: {
         title:
           "📊 المحاضرة 2: المتغيرات العشوائية المنفصلة والتوزيعات الاحتمالية",
