@@ -1,6 +1,6 @@
 // stats_lec1_part3.js
 const lectureData = {
-  title: "📊 المحاضرة 1: مقدمة في الاحتمالات - الجزء الثالث",
+  title: "📊 القصل الاول : مقدمة في الاحتمالات - الجزء الثالث",
 
   content: `
            <style>
