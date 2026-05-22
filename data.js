@@ -117,16 +117,20 @@ const lecturesIndex = {
     name: "📊 مبادئ الإحصاء",
     lectures: {
       stats_lec1_part1: {
-        title: "📊 المحاضرة 1 الجزء الاول: مقدمة في الاحتمالات",
+        title: "📊 الفصل 1 الجزء الاول: مقدمة في الاحتمالات",
         file: "lectures/stats_lec1_part1.js",
       },
        stats_lec1_part2:{
-         title: "📊 المحاضرة 1 الجزء الثاني: مقدمة في الاحتمالات",
+         title: "📊 الفصل  1 الجزء الثاني: مقدمة في الاحتمالات",
         file: "lectures/stats_lec1_part2.js",
        },
        stats_lec1_part3:{
-         title: "📊 المحاضرة 1 الجزء الثالث : مقدمة في الاحتمالات",
+         title: "📊 الفصل 1 الجزء الثالث : مقدمة في الاحتمالات",
         file: "lectures/stats_lec1_part3.js",
+       },
+       stats_lec1_part4:{
+        title:"📊 الفصل 1 الجزء الرابع : مقدمة في الاحتمالات ",
+        file:"lectures/stats_lec1_part4.js",
        },
       
 
