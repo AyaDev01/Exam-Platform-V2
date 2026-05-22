@@ -1,6 +1,6 @@
 // basmaga.js
 const lectureData = {
-     title: "اسئلة محلولة للبصمجة صح وغلط",
+     title: "اسئلة محلولة صح وغلط",
     isSolvedDocument: true,
     exam: {
         trueFalse: [
