@@ -66,6 +66,14 @@ const lecturesIndex = {
         title:"مقالي مادة الموارد البشرية",
         file:"lectures/essay.js",
       },
+      hr_exam1:{
+        title:"اسئلة محلووولة الجزء الاول",
+        file:"lectures/hr_exam1.js",
+      },
+      hr_exam2:{
+        title:"اسئلة محلووولة الجزء التاني",
+        file:"lectures/hr_exam2.js",
+      },
       hr_sources: {
         title: "📚 المصادر والمراجع (PDF)",
         file: "lectures/hr_sources.js",
@@ -198,6 +206,23 @@ const lecturesIndex = {
     },
   },
   },
+  mor:{
+    name:"مراجعة",
+    lectures:{
+      mor_lec1:{
+        title:"اسئلة محلولة : الفصل الاول مراجعة ",
+        file:"lectures/mor_lect1.js",
+      },
+      essay:{
+        title:" مقاااالي محلول ",
+        file:"lectures/essay_mor.js",
+      },
+      mor_sources:{
+        title:"مصادر ومراجع مقرر المراجعة ",
+        file:"lectures/mor_sources.js",
+      },
+    }
+  }
 };
 
 // Dynamic loader function
