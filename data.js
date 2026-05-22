@@ -200,6 +200,10 @@ const lecturesIndex = {
       title:"اسئلة محلولة لمحاضرة ERP - صح وغلط",
       file:"lectures/erp_lec5.js",
     },
+    erp_essay:{
+      title:"مقالي نظم المعلومات المحاسبية",
+      file:"lectures/erp_essay.js",
+    },
     erp_sources:{
       title: "📚 مصادر ومراجع نظم المعلومات المحاسبية",
       file:"lectures/erp_sources.js",
