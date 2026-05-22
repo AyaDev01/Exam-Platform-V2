@@ -1,6 +1,6 @@
 // basmaga.js
 const lectureData = {
-    title: "اسئلة محلولة للبصمجة - اختيار من متعدد",
+    title: "اسئلة محلولة  - اختيار من متعدد",
     isSolvedDocument: true,
     exam: {
         multipleChoice: [

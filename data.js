@@ -74,6 +74,15 @@ const lecturesIndex = {
         title:"اسئلة محلووولة الجزء التاني",
         file:"lectures/hr_exam2.js",
       },
+      hr_exam3:{
+        title:"اسئلة محلووولة الجزء التالت",
+        file:"lectures/hr_exam3.js",
+      },
+      hr_exam4:{
+        title:"اسئلة محلووولة الجزء الرابع",
+        file:"lectures/hr_exam4.js",
+      },
+     
       hr_sources: {
         title: "📚 المصادر والمراجع (PDF)",
         file: "lectures/hr_sources.js",
@@ -216,6 +225,14 @@ const lecturesIndex = {
       mor_lec1:{
         title:"اسئلة محلولة : الفصل الاول مراجعة ",
         file:"lectures/mor_lect1.js",
+      },
+      mor_lec2:{
+        title:"اسئلة محلول: الفصل التاني ",
+        file:"lectures/mor_lec2.js",
+      },
+      mor_lec3:{
+        title:"اسئلة محلولة: الفصل التالت",
+        file:"lectures/mor_lec3.js",
       },
       essay:{
         title:" مقاااالي محلول ",
