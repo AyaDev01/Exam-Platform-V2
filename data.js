@@ -196,6 +196,14 @@ const lecturesIndex = {
         title:"2 اسئلة نظرية بييز",
         file:"lectures/stas_basmaga_three.js",
       },
+      stas_basmaga_four:{
+        title:"  اسئلة ذو الحدين",
+        file:"lectures/stas_basmaga_four.js",
+      },
+      stas_basmaga_five:{
+         title:" 2 اسئلة ذو الحدين",
+        file:"lectures/stas_basmaga_five.js",
+      },
       stas_sources:{
         title:"مصادر ومراجع مقرر الاحصاء",
         file:"lectures/stas_sources.js",
