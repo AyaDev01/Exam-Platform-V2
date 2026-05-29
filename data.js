@@ -180,6 +180,10 @@ const lecturesIndex = {
         title:"سشكن 7",
         file:"lectures/stas_sec7.js",
       },
+      stas_sec8:{
+        title:"سكشن 8",
+        file:"lectures/stas_sec8.js",
+      },
       stas_sources:{
         title:"مصادر ومراجع مقرر الاحصاء",
         file:"lectures/stas_sources.js",
