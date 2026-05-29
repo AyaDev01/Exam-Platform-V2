@@ -184,6 +184,18 @@ const lecturesIndex = {
         title:"سكشن 8",
         file:"lectures/stas_sec8.js",
       },
+      stas_basmga:{
+        title:"اسئلة محلول صح وغلط",
+        file:"lectures/stas_basmga.js",
+      },
+      stas_basmaga_two:{
+        title:"اسئلة نظرية بييز",
+        file:"lectures/stas_basmaga_two.js",
+      },
+      stas_basmaga_three:{
+        title:"2 اسئلة نظرية بييز",
+        file:"lectures/stas_basmaga_three.js",
+      },
       stas_sources:{
         title:"مصادر ومراجع مقرر الاحصاء",
         file:"lectures/stas_sources.js",
