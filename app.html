@@ -1746,12 +1746,12 @@
         );
       }
 
-      function calculateFinalScore() {
+ function calculateFinalScore() {
         let correct = 0;
         if (currentExamData?.multipleChoice) {
           currentExamData.multipleChoice.forEach((q, i) => {
             const answer = userAnswers[`mc_${i}`];
-            if (answer !== undefined && answer === q.correctIndex) {
+            if (answer !== undefined && answer == q.correctIndex) {
               correct++;
             }
           });
@@ -1759,12 +1759,120 @@
         if (currentExamData?.trueFalse) {
           currentExamData.trueFalse.forEach((q, i) => {
             const answer = userAnswers[`tf_${i}`];
-            if (answer !== undefined && answer === q.answer) {
+            if (answer !== undefined && answer == q.answer) {
               correct++;
             }
           });
         }
         return correct;
+      }
+
+      function renderMultipleChoice(container) {
+        const questions = currentExamData.multipleChoice;
+        if (!questions || questions.length === 0) {
+          container.innerHTML =
+            '<div class="box">لا توجد أسئلة اختيار من متعدد</div>';
+          return;
+        }
+
+        container.innerHTML = questions
+          .map((q, i) => {
+            const qId = `mc_${i}`;
+            const selectedAnswer = userAnswers[qId];
+
+            return `
+                    <div class="question-card">
+                        <div>
+                            <span class="q-number">${i + 1}</span>
+                            <span class="q-text">${q.question}</span>
+                        </div>
+                        <div class="options">
+                            ${q.options
+                              .map((opt, j) => {
+                                let additionalClass = "";
+                                let correctLabel = "";
+                                if (
+                                  !examSubmitted &&
+                                  selectedAnswer == j
+                                ) {
+                                  additionalClass = "selected";
+                                }
+                                if (examSubmitted) {
+                                  if (j == q.correctIndex) {
+                                    additionalClass = "correct-after";
+                                    correctLabel = " ✅ الإجابة الصحيحة";
+                                  } else if (
+                                    selectedAnswer == j &&
+                                    selectedAnswer != q.correctIndex
+                                  ) {
+                                    additionalClass = "wrong-after";
+                                    correctLabel = " ❌ إجابتك";
+                                  }
+                                }
+                                return `<button class="option-btn ${additionalClass}" onclick="answerMC('${qId}', '${j}')" ${examSubmitted ? 'disabled' : ''}>${opt}${correctLabel}</button>`;
+                              })
+                              .join("")}
+                        </div>
+                    </div>
+                `;
+          })
+          .join("");
+      }
+
+      function renderTrueFalse(container) {
+        const questions = currentExamData.trueFalse;
+        if (!questions || questions.length === 0) {
+          container.innerHTML = '<div class="box">لا توجد أسئلة صح/خطأ</div>';
+          return;
+        }
+
+        container.innerHTML = questions
+          .map((q, i) => {
+            const qId = `tf_${i}`;
+            const selectedAnswer = userAnswers[qId];
+
+            let trueClass = "";
+            let falseClass = "";
+            let trueLabel = "";
+            let falseLabel = "";
+
+            if (!examSubmitted && selectedAnswer === "true")
+              trueClass = "selected";
+            if (!examSubmitted && selectedAnswer === "false")
+              falseClass = "selected";
+
+            if (examSubmitted) {
+              if (q.answer === "true") {
+                trueClass = "correct-after";
+                trueLabel = " ✅ الإجابة الصحيحة";
+              } else {
+                falseClass = "correct-after";
+                falseLabel = " ✅ الإجابة الصحيحة";
+              }
+              if (selectedAnswer === "true" && q.answer !== "true") {
+                trueClass = "wrong-after";
+                trueLabel = " ❌ إجابتك";
+              }
+              if (selectedAnswer === "false" && q.answer !== "false") {
+                falseClass = "wrong-after";
+                falseLabel = " ❌ إجابتك";
+              }
+            }
+
+            return `
+                    <div class="question-card">
+                        <div>
+                            <span class="q-number">${i + 1}</span>
+                            <span class="q-text">${q.question}</span>
+                        </div>
+                        <div class="tf-buttons">
+                            <button class="tf-btn true-btn ${trueClass}" onclick="answerTF('${qId}', 'true')" ${examSubmitted ? 'disabled' : ''}>✓ صح${trueLabel}</button>
+                            <button class="tf-btn false-btn ${falseClass}" onclick="answerTF('${qId}', 'false')" ${examSubmitted ? 'disabled' : ''}>✗ خطأ${falseLabel}</button>
+                        </div>
+                    </div>
+                `;
+          })
+          .join("");
       }
 
       function submitExam() {
@@ -1832,7 +1940,6 @@
       function closeResult() {
         document.getElementById("resultOverlay").style.display = "none";
       }
-
       function resetExam() {
         userAnswers = {};
         examSubmitted = false;
